@@ -2,6 +2,7 @@
 
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/Dashboard.module.css'; // Import CSS Module
+import Navbar from '../components/Navbar';
 
 const Dashboard = () => {
   const navigate = useNavigate(); // Hook for navigation
@@ -18,6 +19,7 @@ const Dashboard = () => {
   ];
 
   return (
+    <><Navbar />
     <div className={styles.dashboardContainer}>
       <header className={styles.dashboardHeader}>
         <h1>Welcome to MassMutual Insurance</h1>
@@ -42,6 +44,7 @@ const Dashboard = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 

@@ -38,6 +38,7 @@ const AddPolicy = () => {
   };
 
   return (
+    <><Navbar/>
     <div className={styles.formContainer}>
       <h2>Create New Policy</h2>
       {errorMessage && <p className={styles.error}>{errorMessage}</p>}
@@ -93,6 +94,7 @@ const AddPolicy = () => {
         <button type="submit" className={styles.button}>Create Policy</button>
       </form>
     </div>
+    </>
   );
 };
 

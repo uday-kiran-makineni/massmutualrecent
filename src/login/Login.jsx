@@ -38,7 +38,7 @@ const Login = () => {
         if (response.data.roles.includes('ROLE_USER')) {
             navigate('/Userdb'); 
         } else {
-            navigate('/Agentdb'); 
+            navigate('/dashboard'); 
         }
       } else {
         setError('Login failed'); 
@@ -50,8 +50,8 @@ const Login = () => {
   };
 
   return (
+    <><Header/>
     <div className={styles.appContainer}>
-      <Header />
       <h3 className={styles.titletext}>Log in to Dashboard</h3>
       <form onSubmit={handleLogin}> {/* Use handleLogin here */}
         <div className={styles.container}>
@@ -86,8 +86,9 @@ const Login = () => {
         <p>The easiest way to manage your policies, make payments, view statements, and more.</p>
         <p>Scan QR code to Download!</p>
       </div>
-      <Footer />
     </div>
+    <Footer/>
+  </>
   );
 }
 

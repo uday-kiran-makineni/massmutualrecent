@@ -26,7 +26,6 @@ import InsuranceCards from './Agent_db/pages/InsuranceCards.jsx'
 function App() {
   return (
     <Router>
-      <Header />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/Login" element={<Login />} />
@@ -48,7 +47,6 @@ function App() {
         <Route path="/pending-approval" element={<PendingApproval />}/>
         <Route path="/disapproved-policy-holders" element={<DisapprovedPolicyHolders />}/>
       </Routes>
-      <Footer />
     </Router>
   );
 }
