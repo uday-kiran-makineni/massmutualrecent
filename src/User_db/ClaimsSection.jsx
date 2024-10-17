@@ -1,51 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import styles from './ClaimsSection.module.css';
 
 const ClaimsSection = () => {
-  const [claims, setClaims] = useState([]); // State to hold claims data
-  const [error, setError] = useState(null); // State to hold error messages
+    const [claims, setClaims] = useState([]);
+    const [error, setError] = useState(null);
+    const userId = localStorage.getItem('userId'); // Assuming you store userId in localStorage
 
-  useEffect(() => {
     const fetchClaims = async () => {
-      try {
-        const response = await axios.get('http://localhost:8081/api/claims'); // Adjust the URL if needed
-        setClaims(response.data); // Set claims data to state
-      } catch (err) {
-        console.error('Error fetching claims:', err);
-        setError('Failed to load claims.'); // Set error message if fetching fails
-      }
+        try {
+            const response = await axios.get(`http://localhost:8081/api/claims/user/${userId}`, {
+                headers: {
+                    'Authorization': 'Basic ' + btoa('user:user') // Base64 encode the username:password
+                }
+            });
+            setClaims(response.data);
+        } catch (error) {
+            setError('Error fetching claims. Please try again later.');
+            console.error('Error fetching claims:', error);
+        }
     };
 
-    fetchClaims(); // Call the fetch function
-  }, []); // Empty dependency array to run once on component mount
+    useEffect(() => {
+        if (userId) {
+            fetchClaims();
+        } else {
+            setError('User ID is not available. Please log in.');
+        }
+    }, [userId]);
 
-  return (
-    <section className={styles.claimsSection}>
-      <h3 className={styles.sectionTitle}>Recent Claims</h3>
-      {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error message if any */}
-
-      {/* Dynamically render claim cards */}
-      {claims.length > 0 ? (
-        claims.map((claim) => (
-          <div key={claim.id} className={styles.claimCard}>
-            <div className={styles.claimDetails}>
-              <span>Claim ID: {claim.id}</span>
-              <br />
-              <span>Status: {claim.status}</span>
-              <br />
-              <span>Date Filed: {claim.dateFiled}</span>
-              <br />
-            </div>
-          </div>
-        ))
-      ) : (
-        <p>No claims found.</p> // Message if no claims are available
-      )}
-
-      <button className={styles.claimButton}>File a Claim</button>
-    </section>
-  );
+    return (
+        <div>
+            <h2>Your Claims</h2>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {claims.length > 0 ? (
+                <ul>
+                    {claims.map(claim => (
+                        <li key={claim.id}>
+                            <strong>{claim.policyHolderName}</strong> - {claim.policyType} - <em>{claim.status}</em>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No claims found.</p>
+            )}
+        </div>
+    );
 };
 
 export default ClaimsSection;
