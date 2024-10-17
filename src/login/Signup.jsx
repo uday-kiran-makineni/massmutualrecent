@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import styles from './Signup.module.css';
@@ -10,7 +11,6 @@ function Signup() {
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [role, setRole] = useState('User'); // Default role is 'User'
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
@@ -20,7 +20,6 @@ function Signup() {
     const handlePhoneChange = (e) => setPhone(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
     const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
-    const handleRoleChange = (e) => setRole(e.target.value);
 
     // Handle form submission
     const handleSignup = (e) => {
@@ -33,35 +32,26 @@ function Signup() {
         }
 
         const signupData = {
-            name,
+            username: name,
             email,
             phone,
             password,
-            role
+            role: 'ROLE_USER'
         };
 
-        fetch('http://localhost:8080/api/signup', {  // Replace with actual backend signup endpoint
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(signupData),
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Redirect to login page or show success message
-                console.log('Signup successful:', data);
-                navigate('/login');  // Redirect to login page after successful signup
-            } else {
-                // Show error message
-                setError('Signup failed. Please try again.');
-            }
-        })
-        .catch(error => {
-            console.error('Error during signup:', error);
-            setError('An error occurred during signup. Please try again later.');
-        });
+        axios.post('http://localhost:8081/api/auth/register', signupData)
+            .then((response) => {
+                if (response.data === 'User registered successfully!') {
+                    console.log('Signup successful:', response.data);
+                    navigate('/login');  // Redirect to login page after successful signup
+                } else {
+                    setError('Signup failed. Please try again.');
+                }
+            })
+            .catch((error) => {
+                console.error('Error during signup:', error);
+                setError('An error occurred during signup. Please try again later.');
+            });
     };
 
     return (
@@ -113,7 +103,6 @@ function Signup() {
                     value={confirmPassword}
                     onChange={handleConfirmPasswordChange}
                 /><br />
-
 
                 {error && <p style={{ color: 'red' }}>{error}</p>} {/* Show error message if any */}
 
