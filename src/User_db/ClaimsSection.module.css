@@ -45,3 +45,27 @@
 .claimButton:active {
   background-color: var(--bp-color-primary-pressed); /* Pressed state color */
 }
+.claims-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.claims-table th, .claims-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.claims-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.claims-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.claims-table td {
+  transition: background-color 0.3s;
+}
