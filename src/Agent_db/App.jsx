@@ -7,6 +7,7 @@ import AdminFooter from './components/AdminFooter';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import AddPolicy from './pages/AddPolicy';
+import Claimsn from './pages/Claimsn';
 import PolicyList from './pages/PolicyList';
 import EditPolicy from './pages/EditPolicy';
 import PolicyDetails from './pages/PolicyDetails';
@@ -65,6 +66,12 @@ function App() {
             }
           />
           <Route
+            path="/claim"
+            element={
+              isAuthenticated ? <Claimsn /> : <Navigate to="/o" />
+            }
+          />
+          <Route
             path="/policy-list"
             element={
               isAuthenticated ? <PolicyList /> : <Navigate to="/o" />
@@ -96,6 +103,7 @@ function App() {
               isAuthenticated ? <Policies /> : <Navigate to="/o" />
             }
           />
+
           <Route
             path="/categories"
             element={

@@ -1,21 +1,23 @@
-
 import PropTypes from 'prop-types'; // Import PropTypes
 import { NavLink } from 'react-router-dom';
 import styles from '../styles/Navbar.module.css';
 
 const Navbar = ({ onLogout }) => {
   return (
-    <nav className={styles.navbar}>
+    <nav className={styles.navbar} aria-label="Primary Navigation">
       <div className={styles.logo}>
-        <NavLink to="/dashboard">PolicyManager</NavLink>
+        <NavLink to="/dashboard" aria-label="Navigate to Dashboard" className={styles.logoLink}>
+          <h1>PolicyManager</h1> {/* Changed to h1 for better semantic structure */}
+        </NavLink>
       </div>
-      <ul className={styles.navLinks}>
-        <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? styles.active : ''}>Dashboard</NavLink></li>
-        <li><NavLink to="/add-policy" className={({ isActive }) => isActive ? styles.active : ''}>Add Policy</NavLink></li>
-        <li><NavLink to="/policy-list" className={({ isActive }) => isActive ? styles.active : ''}>View Policies</NavLink></li>
-      </ul>
       <div className={styles.logout}>
-        <button className={styles.logoutButton} onClick={onLogout}>Logout</button>
+        <button 
+          className={styles.logoutButton} 
+          onClick={onLogout} 
+          aria-label="Logout" 
+        >
+          Logout
+        </button>
       </div>
     </nav>
   );

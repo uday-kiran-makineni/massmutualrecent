@@ -45,27 +45,37 @@
 .claimButton:active {
   background-color: var(--bp-color-primary-pressed); /* Pressed state color */
 }
-.claims-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+/* ClaimsSection.module.css */
+.container {
+  margin: 20px; /* Add margin around the table */
 }
 
-.claims-table th, .claims-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+.claims-table {
+  width: 100vw; /* Make the table full width of the viewport */
+  max-width: 100%; /* Prevent the table from exceeding the viewport */
+  border-collapse: collapse; /* Remove space between borders */
+  background-color: #ffffff; /* Set a white background for the table */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
+}
+
+.claims-table th,
+.claims-table td {
+  padding: 15px; /* Add padding to cells for better readability */
+  text-align: left; /* Align text to the left */
+  border: 1px solid #dee2e6; /* Default border color for cells */
 }
 
 .claims-table th {
-  background-color: #f2f2f2;
-  font-weight: bold;
+  background-color: #f8f9fa; /* Light grey background for header */
 }
 
-.claims-table tr:hover {
-  background-color: #f1f1f1;
+.claims-table tr {
+  transition: border-color 0.3s; /* Add transition for border color changes */
 }
 
-.claims-table td {
-  transition: background-color 0.3s;
+/* Add responsive design for smaller screens */
+@media (max-width: 768px) {
+  .claims-table {
+      font-size: 14px; /* Adjust font size for smaller screens */
+  }
 }

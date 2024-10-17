@@ -1,0 +1,82 @@
+.claimsSection {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--bp-color-primary-light-pressed);
+  }
+  
+  .sectionTitle {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: var(--bp-color-primary-default); /* Primary color for title */
+  }
+  
+  .claimCard {
+    background-color: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    border: solid,rgb(0, 46, 107);
+  }
+  
+  .claimDetails {
+    color: var(--bp-color-primary-default); /* Use the primary default color for text */
+    font-size: 1.1rem;
+  }
+  
+  .claimButton {
+    background-color: var(--bp-color-primary-default);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .claimButton:hover {
+    background-color: var(--bp-color-primary-hover); /* Hover state color */
+  }
+  
+  .claimButton:active {
+    background-color: var(--bp-color-primary-pressed); /* Pressed state color */
+  }
+  /* ClaimsSection.module.css */
+  .container {
+    margin: 20px; /* Add margin around the table */
+  }
+  
+  .claims-table {
+    width: 100vw; /* Make the table full width of the viewport */
+    max-width: 100%; /* Prevent the table from exceeding the viewport */
+    border-collapse: collapse; /* Remove space between borders */
+    background-color: #ffffff; /* Set a white background for the table */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
+  }
+  
+  .claims-table th,
+  .claims-table td {
+    padding: 15px; /* Add padding to cells for better readability */
+    text-align: left; /* Align text to the left */
+    border: 1px solid #dee2e6; /* Default border color for cells */
+  }
+  
+  .claims-table th {
+    background-color: #f8f9fa; /* Light grey background for header */
+  }
+  
+  .claims-table tr {
+    transition: border-color 0.3s; /* Add transition for border color changes */
+  }
+  
+  /* Add responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .claims-table {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+  }
+  

@@ -1,5 +1,5 @@
-// src/pages/AddPolicy.jsx
 import { useState } from 'react';
+import Navbar from '../components/Navbar';
 import styles from '../styles/AddPolicy.module.css';
 
 const AddPolicy = () => {
@@ -24,7 +24,6 @@ const AddPolicy = () => {
     }
 
     // Simulate API call
-    // In a real app, you would send the data to the backend here
     console.log({ policyName, policyType, coverageAmount, duration });
     
     // Show success message
@@ -38,62 +37,67 @@ const AddPolicy = () => {
   };
 
   return (
-    <><Navbar/>
-    <div className={styles.formContainer}>
-      <h2>Create New Policy</h2>
-      {errorMessage && <p className={styles.error}>{errorMessage}</p>}
-      {successMessage && <p className={styles.success}>{successMessage}</p>}
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.formGroup}>
-          <label htmlFor="policyName">Policy Name</label>
-          <input
-            type="text"
-            id="policyName"
-            placeholder="Enter policy name"
-            value={policyName}
-            onChange={(e) => setPolicyName(e.target.value)}
-            className={styles.input}
-          />
+    <>
+      <Navbar />
+      <div className={styles.formContainer}>
+        <div className={styles.formHeader}>
+          <h2>Create New Policy</h2>
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="policyType">Policy Type</label>
-          <select
-            id="policyType"
-            value={policyType}
-            onChange={(e) => setPolicyType(e.target.value)}
-            className={styles.input}
-          >
-            <option value="">Select Policy Type</option>
-            <option value="health">Health</option>
-            <option value="life">Life</option>
-            <option value="auto">Auto</option>
-          </select>
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="coverageAmount">Coverage Amount</label>
-          <input
-            type="number"
-            id="coverageAmount"
-            placeholder="Enter coverage amount"
-            value={coverageAmount}
-            onChange={(e) => setCoverageAmount(e.target.value)}
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="duration">Duration (Years)</label>
-          <input
-            type="number"
-            id="duration"
-            placeholder="Enter duration in years"
-            value={duration}
-            onChange={(e) => setDuration(e.target.value)}
-            className={styles.input}
-          />
-        </div>
-        <button type="submit" className={styles.button}>Create Policy</button>
-      </form>
-    </div>
+        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+        {successMessage && <p className={styles.success}>{successMessage}</p>}
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.formGroup}>
+            <label htmlFor="policyName">Policy Name</label>
+            <input
+              type="text"
+              id="policyName"
+              placeholder="Enter policy name"
+              value={policyName}
+              onChange={(e) => setPolicyName(e.target.value)}
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="policyType">Policy Type</label>
+            <select
+              id="policyType"
+              value={policyType}
+              onChange={(e) => setPolicyType(e.target.value)}
+              className={styles.input}
+            >
+              <option value="">Select Policy Type</option>
+              <option value="health">Health</option>
+              <option value="life">Life</option>
+              <option value="auto">Auto</option>
+            </select>
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="coverageAmount">Coverage Amount</label>
+            <input
+              type="number"
+              id="coverageAmount"
+              placeholder="Enter coverage amount"
+              value={coverageAmount}
+              onChange={(e) => setCoverageAmount(e.target.value)}
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="duration">Duration (Years)</label>
+            <input
+              type="number"
+              id="duration"
+              placeholder="Enter duration in years"
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
+              className={styles.input}
+            />
+          </div>
+          <button type="submit" className={styles.button}>
+            Create Policy
+          </button>
+        </form>
+      </div>
     </>
   );
 };

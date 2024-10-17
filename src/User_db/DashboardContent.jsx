@@ -9,11 +9,13 @@ const DashboardContent = React.forwardRef((props, ref) => {
       <div ref={ref} className={styles.dashboardContent}>
           <div className={styles.greeting}>
               <h2>Welcome back, {username}!</h2> {/* Use the retrieved username */}
-          </div>
-          <div className={styles.overview}>
-              <span>Total Policies: 5</span>
-              <span>Total Claims: 2</span>
-              <span>Upcoming Payments: 1</span>
+
+              {/* Buttons for Create, Update, and Delete */}
+              <div className={styles.buttonGroup}>
+                  <button className={`${styles.policyButton} ${styles.createButton}`}>Create Policy</button>
+                  <button className={`${styles.policyButton} ${styles.updateButton}`}>Update Policy</button>
+                  <button className={`${styles.policyButton} ${styles.deleteButton}`}>Delete Policy</button>
+              </div>
           </div>
       </div>
   );
