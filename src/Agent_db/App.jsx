@@ -19,6 +19,7 @@ import AllPolicies from './pages/SoldPolicies';  // New Import
 import ApprovedPolicyHolders from './pages/ApprovedPolicyHolders';  // New Import
 import PendingApproval from './pages/PendingApprovals';  // New Import
 import DisapprovedPolicyHolders from './pages/DisapprovedPolicyHolders';  // New Import
+import Products from './pages/Products';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -95,6 +96,12 @@ function App() {
             path="/users"
             element={
               isAuthenticated ? <Users /> : <Navigate to="/o" />
+            }
+          />
+          <Route
+            path="/products"
+            element={
+              isAuthenticated ? <Products /> : <Navigate to="/o" />
             }
           />
           <Route

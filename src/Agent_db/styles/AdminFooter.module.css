@@ -7,6 +7,9 @@
     border-top: 1px solid #ddd;
     margin-top: 20px;
     font-size: 0.9rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }
 .footer p{
   text-align: center;

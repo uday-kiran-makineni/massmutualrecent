@@ -6,6 +6,7 @@
     padding: 15px;
     transition: box-shadow 0.3s ease;
     background-color:  rgb(154, 187, 229);
+    color: white;
   }
   
   .testimonialCard:hover {
@@ -16,4 +17,6 @@
     width: 50px; /* Set a specific width for the images */
     height: 50px; /* Set a specific height for the images */
   }
-  
+  .title{
+    color: white;
+  }

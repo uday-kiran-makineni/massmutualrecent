@@ -36,7 +36,7 @@ const Testimonials = () => {
                   <img src={testimonial.image} alt={testimonial.name} className={`rounded-circle me-3 ${styles.testimonialImage}`} />
                   <h5 className="card-title">{testimonial.name}</h5>
                 </div>
-                <p className="card-text">{testimonial.text}</p>
+                <p className={`card-text ${styles.title}`}>{testimonial.text}</p>
               </div>
             </div>
           </div>

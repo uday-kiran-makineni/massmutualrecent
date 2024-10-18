@@ -2,146 +2,151 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
 import './ClaimSection.module.css'; // Import a CSS file for additional styles
-
+import Navbar from '../components/Navbar';
+import AdminFooter from '../components/AdminFooter';
 
 const ClaimsSection = () => {
     const [claims, setClaims] = useState([]);
     const [error, setError] = useState(null);
     const userId = localStorage.getItem('userId'); // Retrieve userId from localStorage
-    const encryptedUsername = localStorage.getItem('username'); // Retrieve encrypted username from localStorage
+    const username = localStorage.getItem('username'); // Retrieve plain username from localStorage
     const encryptedPassword = localStorage.getItem('password'); // Retrieve encrypted password from localStorage
 
     const secretKey = 'your-secret-key'; // Secret key used for encryption and decryption
 
-    // Function to decrypt the username and password
-    const decryptData = (encryptedData) => {
+    const decryptPassword = (encryptedPassword) => {
         try {
-            const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
+            const bytes = CryptoJS.AES.decrypt(encryptedPassword, secretKey);
             const decrypted = bytes.toString(CryptoJS.enc.Utf8);
-            console.log('Decrypted data:', decrypted); // Log the decrypted data
             return decrypted;
         } catch (e) {
-            console.error('Decryption failed:', e); // Log decryption error
+            console.error('Decryption failed:', e);
             return null;
         }
     };
 
     const fetchClaims = async () => {
         try {
-            // Decrypt the username and password
-            const decryptedUsername = decryptData(encryptedUsername); // Decrypt username
-            const decryptedPassword = decryptData(encryptedPassword); // Decrypt password
+            const decryptedPassword = decryptPassword(encryptedPassword);
 
-            console.log('Decrypted username:', decryptedUsername); // Log decrypted username
-            console.log('Decrypted password:', decryptedPassword); // Log decrypted password
-
-            if (!decryptedUsername || !decryptedPassword) {
-                throw new Error('Decryption failed or missing credentials');
+            if (!username || !decryptedPassword) {
+                throw new Error('Missing credentials');
             }
-
-            console.log('Starting API call to fetch claims...');
 
             const response = await axios.get(`http://localhost:8081/api/claims/agent/${userId}`, {
                 headers: {
-                    'Authorization': 'Basic ' + btoa(`${decryptedUsername}:${decryptedPassword}`) // Use decrypted username and password
+                    'Authorization': 'Basic ' + btoa(`${username}:${decryptedPassword}`)
                 }
             });
 
-            console.log('API response:', response.data); // Log the API response data
-
-            setClaims(response.data); // Set the claims state
-            calculateMonthlyClaims(response.data); // Calculate monthly claims after fetching
+            setClaims(response.data);
+            calculateMonthlyClaims(response.data);
+            setError(null);
         } catch (error) {
             setError('Error fetching claims. Please try again later.');
-            console.error('Error fetching claims:', error); // Log the error
+            console.error('Error fetching claims:', error.response || error.message || error);
         }
     };
 
     const calculateMonthlyClaims = (claimsData) => {
         const monthlyCounts = {};
-        console.log('Calculating monthly claims...'); // Log calculation start
-
         claimsData.forEach(claim => {
-            const date = new Date(claim.date); // Assume claim.date is in a valid date format
-            const month = date.toLocaleString('default', { month: 'long' }); // Get the full month name
-            const year = date.getFullYear(); // Get the year
-            const monthYear = `${month} ${year}`; // Combine month and year for storage
+            const date = new Date(claim.date);
+            const month = date.toLocaleString('default', { month: 'long' });
+            const year = date.getFullYear();
+            const monthYear = `${month} ${year}`;
 
             if (!monthlyCounts[monthYear]) {
-                monthlyCounts[monthYear] = 0; // Initialize if not present
+                monthlyCounts[monthYear] = 0;
             }
 
-            monthlyCounts[monthYear] += 1; // Count the claim
+            monthlyCounts[monthYear] += 1;
         });
 
-        console.log('Monthly claim counts:', monthlyCounts); // Log the monthly claim counts
-
-        // Store monthly counts in local storage
         for (const [key, value] of Object.entries(monthlyCounts)) {
-            localStorage.setItem(`totalClaims_${key}`, value); // Store with key as `totalClaims_Month Year`
-            console.log(`Stored ${value} claims for ${key} in localStorage`); // Log each storage action
+            localStorage.setItem(`totalClaims_${key}`, value);
         }
     };
 
     useEffect(() => {
-        console.log('Component mounted. Checking credentials...');
-        console.log('userId:', userId);
-        console.log('encryptedUsername:', encryptedUsername);
-        console.log('encryptedPassword:', encryptedPassword);
-
-        if (userId && encryptedUsername && encryptedPassword) {
+        if (userId && username && encryptedPassword) {
             fetchClaims();
         } else {
             setError('User credentials are not available. Please log in.');
-            console.error('Missing credentials. Cannot fetch claims.');
         }
-    }, [userId, encryptedUsername, encryptedPassword]);
+    }, [userId, username, encryptedPassword]);
 
-    // Function to return a border color based on the claim status
     const getStatusBorderColor = (status) => {
         switch (status) {
             case 'Approved':
-                return '#28a745'; // Green
+                return '#28a745';
             case 'Pending':
-                return '#ffc107'; // Yellow
+                return '#ffc107';
             case 'Rejected':
-                return '#dc3545'; // Red
+                return '#dc3545';
             default:
-                return '#6c757d'; // Grey for unknown statuses
+                return '#6c757d';
         }
     };
 
     return (
-        <div className="container"> {/* Wrap the table in a container */}
-            <h2>Your Claims</h2>
+        <>
+        <Navbar/>
+        <div className="container">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                <h2>Your Claims</h2>
+                <button 
+                    style={{
+                        backgroundColor: '#007bff', 
+                        color: 'white', 
+                        padding: '10px 20px', 
+                        border: 'none', 
+                        borderRadius: '5px', 
+                        cursor: 'pointer', 
+                        fontSize: '16px',
+                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                        transition: 'background-color 0.3s ease'
+                    }}
+                    onClick={() => console.log('Add Claim clicked')}
+                    onMouseOver={e => e.target.style.backgroundColor = '#0056b3'}
+                    onMouseOut={e => e.target.style.backgroundColor = '#007bff'}
+                >
+                    Add Claim
+                </button>
+            </div>
+
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {claims.length > 0 ? (
-                <table className="claims-table">
-                    <thead>
-                        <tr>
-                            <th>Policy Holder</th>
-                            <th>Policy Type</th>
-                            <th>Coverage Amount</th>
-                            <th>Status</th>
-                            <th>Agent</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {claims.map(claim => (
-                            <tr key={claim.id} style={{ border: `2px solid ${getStatusBorderColor(claim.status)}` }}>
-                                <td>{claim.policyHolderName}</td>
-                                <td>{claim.policyType}</td>
-                                <td>${claim.coverageAmount.toLocaleString()}</td>
-                                <td>{claim.status}</td>
-                                <td>{claim.agentName}</td>
+                <>
+                    <p>Total Claims: {claims.length}</p>
+
+                    <table className="claims-table">
+                        <thead>
+                            <tr>
+                                <th>Policy Holder</th>
+                                <th>Policy Type</th>
+                                <th>Amount</th>
+                                <th>Status</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {claims.map(claim => (
+                                <tr key={claim.id} style={{ border: `2px solid ${getStatusBorderColor(claim.status)}` }}>
+                                    <td>{claim.policyHolderName}</td>
+                                    <td>{claim.policyType}</td>
+                                    <td>${claim.coverageAmount.toLocaleString()}</td>
+                                    <td>{claim.status}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </>
             ) : (
-                <p>No claims found.</p>
+                !error && <p>No claims found.</p>
             )}
         </div>
+        <AdminFooter/>
+        </>
     );
 };
 

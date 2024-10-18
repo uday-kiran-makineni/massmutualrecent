@@ -1,154 +1,70 @@
-/* src/styles/AddPolicy.module.css */
-
-.formContainer {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.Formbg{
+  background-color: rgb(255, 255, 255);
+  color:rgb(1, 47, 107);
+  border: 1px solid white;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px rgb(142, 137, 137);
+  text-align: left;
+  width: 50%;
+  padding: 50px;
+  align-items: center;
+  display: inline-block;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-left: 23%;
+  margin-top: 20px;
+  border-color: rgb(1, 47, 107);
+  border-width: 2.5px;
 }
 
-h2 {
-  color: var(--bp-color-primary-default);
-  margin-bottom: 20px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-}
-
-.formGroup {
+.Formbg input{
+  margin-left: 20px;
   margin-bottom: 15px;
+  padding: 5px;
+  border-radius: 4px;
+  margin-top: 4px;
+  color: rgb(124, 126, 129);
+  box-shadow: none;
+  display: inline;
 }
 
-label {
-  margin-bottom: 5px;
+.Formbg input[type="submit"]{
+  color: white;
+  background-color: rgb(1, 47, 107);
+  margin-left: 45%;
+  margin-top: 20px;
+  height: 50px;
+  width: 100px;
+  border-radius: 20px;
+  font-size:medium;
   font-weight: bold;
-  color: #333;
 }
 
-.input {
-  padding: 10px;
-  border: 1px solid #ccc;
+.Formbg select{
+  margin-left: 20px;
+  margin-bottom: 15px;
+  padding: 5px;
   border-radius: 4px;
-  transition: border 0.3s;
+  margin-top: 4px;
+  color: rgb(0, 0, 0);
+  box-shadow: none;
+  background-color: white;
 }
 
-.input:focus {
-  border: 1px solid var(--bp-color-primary-default);
+.title{
+  text-align:center;
 }
 
-.button {
-  background-color: var(--bp-color-primary-default);
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
+.Formbg label{
+  display: inline;
 }
 
-.button:hover {
-  background-color: var(--bp-color-primary-hover);
-}
-
-.error {
-  color: red;
-  margin-bottom: 10px;
-}
-
-.success {
-  color: green;
-  margin-bottom: 10px;
-}
-.formContainer {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 1px solid #d1d1d1;
-}
-
-.formHeader {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.formHeader h2 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 28px;
-  color: #1e2a38;
-  margin-bottom: 10px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.formGroup {
-  display: flex;
-  flex-direction: column;
-}
-
-.formGroup label {
-  font-weight: 500;
-  font-size: 16px;
-  color: #4a4a4a;
-  margin-bottom: 5px;
-}
-
-.input {
-  padding: 12px;
-  border: 1px solid #ccc;
+.Formbg textarea{
+  margin-left: 20px;
+  margin-top: 30px;
+  padding: 5px;
   border-radius: 4px;
-  font-size: 16px;
-  transition: border-color 0.2s ease;
-}
-
-.input:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-.button {
-  background-color: #007bff;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-
-.button:hover {
-  background-color: #0056b3;
-}
-
-.error {
-  color: #ff4d4d;
-  font-size: 14px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.success {
-  color: #4caf50;
-  font-size: 14px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .formContainer {
-    width: 90%;
-  }
+  
+  color: rgb(0, 0, 0);
+  box-shadow: none;
+  background-color: white;
 }

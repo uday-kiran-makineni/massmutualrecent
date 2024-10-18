@@ -3,6 +3,9 @@ import Navbar from '../components/Navbar';
 import AdminFooter from '../components/AdminFooter';
 import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
+import Footer from '../../login/Footer';
+import ExtraFooter from '../../landing/ExtraFooter';
+import UserFooter from '../../User_db/UserFooter';
 
 const dashboardItems = [
   { name: 'My policies', icon: '↻', route: '/Policies' }, 
@@ -18,7 +21,7 @@ const dashboardItems = [
   { name: 'Service Request', icon: '❓' },
   { name: 'Payment Link', icon: '🔗' },
   { name: 'Reports', icon: '📑' },
-  { name: 'Product 360', icon: '❤️' },
+  { name: 'Product 360', icon: '❤️', route: '/products' },
   { name: 'My Customers', icon: '👥' }
 ];
 
@@ -67,7 +70,7 @@ const Dashboard = () => {
           </div>
         ))}
       </div>
-      <AdminFooter />
+      <UserFooter/>
     </>
   );
 };

@@ -22,6 +22,11 @@ import PendingApproval from './Agent_db/pages/PendingApprovals';  // New Import
 import DisapprovedPolicyHolders from './Agent_db/pages/DisapprovedPolicyHolders';  // New Import
 import InsuranceCards from './Agent_db/pages/InsuranceCards.jsx';
 import Claimsn from './Agent_db/pages/Claimsn.jsx';
+import Products from './Agent_db/pages/Products.jsx';
+import HealthInsurance from './Agent_db/pages/HealthInsurance.jsx';
+import TravelInsurance from './Agent_db/pages/TravelInsurance.jsx';
+import LifeInsurance from './Agent_db/pages/LifeInsurance.jsx';
+import MotorInsurance from './Agent_db/pages/MotorInsurance.jsx';
 
 
 function App() {
@@ -43,11 +48,16 @@ function App() {
         <Route path="/policies" element={<Policies />}/>
         <Route path="/categories" element={<Categories />}/>
         <Route path="/subcategories" element={<SubCategories />}/>
+        <Route path="/products" element={<Products />}/>
         <Route path="/all-policies" element={<AllPolicies />}/>
         <Route path="/approved-policy-holders" element={<ApprovedPolicyHolders />}/>
         <Route path="/pending-approval" element={<PendingApproval />}/>
         <Route path="/disapproved-policy-holders" element={<DisapprovedPolicyHolders />}/>
         <Route path="/claim" element={ <Claimsn />}/>
+        <Route path="/health-policy" element={<HealthInsurance />}/>
+        <Route path="/life-policy" element={<LifeInsurance />}/>
+        <Route path="/travel-policy" element={<TravelInsurance />}/>
+        <Route path="/motor-policy" element={<MotorInsurance />}/>
       </Routes>
     </Router>
   );

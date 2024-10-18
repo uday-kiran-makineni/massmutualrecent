@@ -8,6 +8,10 @@
     justify-content: space-between;
     border-top: 1px solid #ddd;
     margin-top: 20px;
+    margin: auto;
     font-size: 0.9rem;
   }
+.p{
+  text-align: center;
+}
   

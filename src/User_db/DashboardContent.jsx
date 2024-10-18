@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './DashboardContent.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const DashboardContent = React.forwardRef((props, ref) => {
   // Retrieve the username from local storage
@@ -12,9 +13,8 @@ const DashboardContent = React.forwardRef((props, ref) => {
 
               {/* Buttons for Create, Update, and Delete */}
               <div className={styles.buttonGroup}>
-                  <button className={`${styles.policyButton} ${styles.createButton}`}>Create Policy</button>
-                  <button className={`${styles.policyButton} ${styles.updateButton}`}>Update Policy</button>
-                  <button className={`${styles.policyButton} ${styles.deleteButton}`}>Delete Policy</button>
+                  <button onClick={() => navigate('/add-policy')} className={`${styles.policyButton} ${styles.createButton}`}>Buy Policy</button>
+                  <button onClick={() => navigate('/add-policy')} className={`${styles.policyButton} ${styles.updateButton}`}>Update Policy</button>
               </div>
           </div>
       </div>

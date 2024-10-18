@@ -80,3 +80,70 @@
     }
   }
   
+  /* Add this to ClaimSection.module.css */
+
+/* Table container */
+.container {
+    width: 100%;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Style for the claims table */
+.claims-table {
+    width: 100%;
+    border-collapse: collapse; /* Ensure the borders don't have gaps */
+    margin-top: 10px;
+}
+
+/* Table headers */
+.claims-table th {
+    border: 1px solid #ccc; /* Add borders around header cells */
+    padding: 10px;
+    background-color: #f4f4f4;
+    text-align: left;
+}
+
+/* Table cells */
+.claims-table td {
+    border: 1px solid #ccc; /* Add borders around all cells */
+    padding: 10px;
+    text-align: left;
+}
+
+/* Add alternate row color for better readability */
+.claims-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Adjust the border color based on claim status */
+.claims-table tr {
+    border-left: 5px solid transparent; /* Custom left border for status */
+}
+
+/* Styles for Add Claim button */
+.add-claim-button-container {
+  text-align: right; /* Align the button to the right */
+  margin-bottom: 15px; /* Add some space below the button */
+}
+
+.add-claim-button {
+  background-color: #007bff; /* Bootstrap-like primary color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Arial', sans-serif;
+}
+
+.add-claim-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.add-claim-button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add focus effect */
+}
