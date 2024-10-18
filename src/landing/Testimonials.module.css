@@ -1,11 +1,13 @@
 @import  './App.module.css';
 /* Testimonials.module.css */
 .testimonialCard {
-    border: 1px solid rgb(0, 61, 140); /* Light gray border */
+    border: 2px solid rgba(8, 54, 115, 0.764); /* Light gray border */
     border-radius: 8px;
     padding: 15px;
     transition: box-shadow 0.3s ease;
-    background-color:  rgb(154, 187, 229);
+    background-color: rgba(0, 61, 140, 0.742);
+    color: white;
+    transition: 0.3s;
   }
   
   .testimonialCard:hover {
@@ -13,7 +15,24 @@
   }
   
   .testimonialImage {
-    width: 50px; /* Set a specific width for the images */
-    height: 50px; /* Set a specific height for the images */
+    width: 70px; /* Set a specific width for the images */
+    height: 70px; /* Set a specific height for the images */
+    border: 3px solid #002451;
   }
   
+
+  .cardText{
+    color: white;
+  }
+
+  .testimonialCard:hover {
+    transform: scale(1.05);
+    box-shadow: 3px 3px 8px rgb(70, 118, 241);
+    border: 2px solid white;
+
+}
+.cardTitle{
+  background-color: #00245148;
+  padding: 10px 17px;
+  border-radius: 50px;
+}
