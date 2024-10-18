@@ -20,7 +20,8 @@ import AllPolicies from './Agent_db/pages/SoldPolicies';  // New Import
 import ApprovedPolicyHolders from './Agent_db/pages/ApprovedPolicyHolders';  // New Import
 import PendingApproval from './Agent_db/pages/PendingApprovals';  // New Import
 import DisapprovedPolicyHolders from './Agent_db/pages/DisapprovedPolicyHolders';  // New Import
-import InsuranceCards from './Agent_db/pages/InsuranceCards.jsx'
+import InsuranceCards from './Agent_db/pages/InsuranceCards.jsx';
+import Claimsn from './Agent_db/pages/Claimsn.jsx';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
         <Route path="/approved-policy-holders" element={<ApprovedPolicyHolders />}/>
         <Route path="/pending-approval" element={<PendingApproval />}/>
         <Route path="/disapproved-policy-holders" element={<DisapprovedPolicyHolders />}/>
+        <Route path="/claim" element={ <Claimsn />}/>
       </Routes>
     </Router>
   );
