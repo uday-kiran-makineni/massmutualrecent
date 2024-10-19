@@ -38,3 +38,8 @@
 .box:hover {
     transform: scale(1.05);
 }
+
+.cardInfo{
+    font-size:2rem;
+    color: red;
+}
