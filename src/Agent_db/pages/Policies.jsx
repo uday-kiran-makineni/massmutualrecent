@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './PolicySection.module.css';
 import CryptoJS from 'crypto-js';
+import Navbar from '../components/Navbar';
+import AdminFooter from '../components/AdminFooter';
+import UserFooter from '../../User_db/UserFooter';
 
 
 const secretKey = 'your-secret-key';
@@ -100,6 +103,8 @@ const PolicySection = () => {
   const total = totalHealthPolicies + totalLifePolicies + totalMotorPolicies + totalTravelPolicies;
 
   return (
+    <>
+    <Navbar/>
     <section className={styles.policySection}>
       <h2 className={styles.totalPolicies}>Total Policies: {total}</h2>
 
@@ -204,6 +209,8 @@ const PolicySection = () => {
         <p>No travel insurance policies found.</p>
       )}
     </section>
+    <UserFooter/>
+    </>
   );
 };
 

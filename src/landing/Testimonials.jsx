@@ -34,9 +34,9 @@ const Testimonials = () => {
               <div className="card-body">
                 <div className="d-flex align-items-center mb-3">
                   <img src={testimonial.image} alt={testimonial.name} className={`rounded-circle me-3 ${styles.testimonialImage}`} />
-                  <h5 className={styles.cardTitle}>{testimonial.name}</h5>
+                  <h5 className={styles.textcontent}>{testimonial.name}</h5>
                 </div>
-                <p className="card-text">{testimonial.text}</p>
+                <p className={`${styles.textcontent}`}>{testimonial.text}</p>
               </div>
             </div>
           </div>

@@ -9,7 +9,7 @@ import UserFooter from '../../User_db/UserFooter';
 
 const dashboardItems = [
   { name: 'My policies', icon: '↻', route: '/Policies' }, 
-  { name: 'My Business', icon: '💰' },
+  { name: 'My Business', icon: '💰' , route: '/business' },
   { name: 'Claims', icon: '📋', route: '/claim' },
   { name: 'Proposal', icon: '📑' },
   { name: 'Pending Renewals', icon: '↻' },
@@ -17,7 +17,7 @@ const dashboardItems = [
   { name: 'Earnings', icon: '💵' },
   { name: 'Locate', icon: '📍' },
   { name: 'Leads', icon: '🧑‍🤝‍🧑' },
-  { name: 'Acknowledgement', icon: '✅' },
+  { name: 'Acknowledgement', icon: '✅', route: '/acknowledgement' },
   { name: 'Service Request', icon: '❓' },
   { name: 'Payment Link', icon: '🔗' },
   { name: 'Reports', icon: '📑' },
@@ -53,8 +53,8 @@ const Dashboard = () => {
           >
             Create Policy
           </button>
-          <button className="btn update-btn">Update Policy</button>
-          <button className="btn delete-btn">Delete Policy</button>
+          <button className="btn update-btn"  onClick={() => navigate('/update-policy')}>Update Policy</button>
+          <button className="btn delete-btn"  onClick={() => navigate('/delete-policy')}>Delete Policy</button>
         </div>
       </div>
       <h2 className='agentdashboardheading alignment'> Here are your quick links </h2>
