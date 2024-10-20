@@ -10,7 +10,6 @@ import Plans from './Plans.jsx'
 import Subscription from './Subscription.jsx'
 import Testimonials from './Testimonials.jsx'
 import Footer from './Footer.jsx'
-import ExtraFooter from './ExtraFooter.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -22,7 +21,6 @@ createRoot(document.getElementById('root')).render(
     <Plans/>
     <Subscription/>
     <Testimonials/>
-    <ExtraFooter/>
     <Footer/>
   </StrictMode>,
 )

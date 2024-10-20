@@ -1,5 +1,6 @@
 
  import styles from './Plans.module.css';
+ import { Link } from 'react-router-dom';
 
 const InsurancePlans = () => {
   return (
@@ -18,7 +19,7 @@ const InsurancePlans = () => {
         <li>Annual health check-ups included.</li>
         <li>Pre and post-hospitalization expenses covered.</li>
       </ul>
-      <a href="#health" className={styles.planButton}>Get Health Insurance Policy</a>
+      <a className={styles.planButton}> Get Health Insurance Policy</a>
     </div>
 
     {/* Life Insurance Plan */}

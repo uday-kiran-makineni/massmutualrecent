@@ -5,3 +5,6 @@
     background-color: var(--bp-color-primary-pressed);
     color: white;
 }
+.footer p{
+    color: white;
+}
