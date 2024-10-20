@@ -43,12 +43,13 @@ const Header = () => {
         <div id="Plans">
         <Plans/>
         </div>
+        <Testimonials/>
         <div id="Contact">
         <Subscription/>
         </div>
-        <Testimonials/>
         </>
     );
 };
 
 export default Header;
+

@@ -4,7 +4,7 @@
 
 const InsurancePlans = () => {
   return (
-    <div className={styles.plansContainer}>
+<div className={styles.plansContainer}>
   <center><h1>Mass Mutual's trusted insurance policies</h1></center>
   <div className={styles.plans}>
     
