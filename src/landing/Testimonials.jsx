@@ -1,4 +1,3 @@
-
 import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap styles are available
 import styles from './Testimonials.module.css'; // Import your CSS module if needed
 
@@ -30,13 +29,13 @@ const Testimonials = () => {
       <div className="row">
         {testimonialsData.map((testimonial) => (
           <div className="col-md-4 mb-4" key={testimonial.id}>
-            <div className={`card ${styles.testimonialCard}`}>
+            <div className={styles.testimonialCard}>
               <div className="card-body">
                 <div className="d-flex align-items-center mb-3">
                   <img src={testimonial.image} alt={testimonial.name} className={`rounded-circle me-3 ${styles.testimonialImage}`} />
-                  <h5 className={styles.textcontent}>{testimonial.name}</h5>
+                  <h5 className={styles.cardTitle}>{testimonial.name}</h5>
                 </div>
-                <p className={`${styles.textcontent}`}>{testimonial.text}</p>
+                <p className={styles.cardText}>{testimonial.text}</p>
               </div>
             </div>
           </div>

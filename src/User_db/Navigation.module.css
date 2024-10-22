@@ -1,9 +1,11 @@
 .nav {
   background-color: var(--bp-color-primary-default);
-  padding: 15px 0;
+  padding: -25px 0;
   border-bottom: 1px solid #ddd;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  margin-top: 67px;
 }
 
 .navList {
@@ -11,12 +13,12 @@
   justify-content: flex-end;
   list-style-type: none;
   padding: 0;
-
+  margin-top: 15px;
 }
 
 .navItem {
   margin: 0 10px; /* Space between buttons */
-  padding: 10px 20px; /* Padding to make it look like a button */
+  padding: 3px 15px; /* Padding to make it look like a button */
   background-color: var(--bp-color-primary-default); /* Primary background color */
   color: white; /* White text color */
   text-align: center; /* Center the text */
@@ -24,6 +26,7 @@
   cursor: pointer; /* Pointer cursor for interactivity */
   transition: background-color 0.3s ease; /* Smooth hover transition */
   font-size: 1.2rem;
+  
 }
 
 .navItem:hover {
@@ -39,8 +42,3 @@ nav ul li a {
   text-decoration: none;
   color: #ffffff;
 }
-
-
-
-
-

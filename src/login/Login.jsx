@@ -70,7 +70,6 @@ const Login = () => {
                 value={username}
                 onChange={handleUsernameChange}
               /><br />
-
               <label>Password</label><br />
               <input
                 type="password"

@@ -24,7 +24,6 @@ import InsuranceCards from './Agent_db/pages/InsuranceCards.jsx';
 import InsuranceCardsUpdate from'./Agent_db/pages/InsuranceCardsUpdate.jsx';
 import InsuranceCardsDelete from'./Agent_db/pages/InsuranceCardsDelete.jsx';
 import Claimsn from './Agent_db/pages/Claimsn.jsx';
-import Products from './Agent_db/pages/Products.jsx';
 import HealthInsurance from './Agent_db/pages/HealthInsurance.jsx';
 import TravelInsurance from './Agent_db/pages/TravelInsurance.jsx';
 import LifeInsurance from './Agent_db/pages/LifeInsurance.jsx';
@@ -35,6 +34,11 @@ import UpdateLifeInsurance from './Agent_db/pages/LifeInsuranceUpdate.jsx';
 import DeletePolicy from './Agent_db/pages/LifeInsuranceDelete.jsx';
 import HealthPolicyDelete from './Agent_db/pages/HealthInsuranceDelete.jsx';
 import HealthInsuranceForm from './Agent_db/pages/HealthInsuranceUpdate.jsx';
+import Products from './Agent_db/pages/Products.jsx';
+import MotorInsuranceUpdate from './Agent_db/pages/MotorInsuranceUpdate.jsx';
+import UpdateTravelInsurance from './Agent_db/pages/TravelInsuranceUpdate.jsx';
+import TravelPolicyDelete from './Agent_db/pages/TravelInsuranceDelete.jsx';
+import MotorPolicyDelete from './Agent_db/pages/MotorPolicyDelete.jsx';
 
 function App() {
   return (
@@ -57,7 +61,6 @@ function App() {
         <Route path="/policies" element={<Policies />}/>
         <Route path="/categories" element={<Categories />}/>
         <Route path="/subcategories" element={<SubCategories />}/>
-        <Route path="/products" element={<Products />}/>
         <Route path="/all-policies" element={<AllPolicies />}/>
         <Route path="/approved-policy-holders" element={<ApprovedPolicyHolders />}/>
         <Route path="/pending-approval" element={<PendingApproval />}/>
@@ -66,13 +69,18 @@ function App() {
         <Route path="/health-policy" element={<HealthInsurance />}/>
         <Route path="/life-policy-update" element={<UpdateLifeInsurance />}/>
         <Route path="/health-policy-update" element={<HealthInsuranceForm />}/>
+        <Route path="/motor-policy-update" element={<MotorInsuranceUpdate />}/>
+        <Route path="/travel-policy-update" element={<UpdateTravelInsurance />}/>
         <Route path="/life-policy-delete" element={<DeletePolicy />}/>
         <Route path="/health-policy-delete" element={<HealthPolicyDelete />}/>
+        <Route path="/travel-policy-delete" element={<TravelPolicyDelete />}/>
+        <Route path="/motor-policy-delete" element={<MotorPolicyDelete />}/>
         <Route path="/life-policy" element={<LifeInsurance />}/>
         <Route path="/travel-policy" element={<TravelInsurance />}/>
         <Route path="/motor-policy" element={<MotorInsurance />}/>
         <Route path="/acknowledgement" element={<TermsAndConditions/>}/>
         <Route path="/business" element={<MyBusiness/>}/>
+        <Route path="/products" element={<Products/>}/>
       </Routes>
     </Router>
   );

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './PolicySection.module.css';
 import CryptoJS from 'crypto-js';
-
+import { useNavigate } from 'react-router-dom';
 
 const secretKey = 'your-secret-key';
 
@@ -14,16 +14,17 @@ const PolicySection = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  const navigate = useNavigate(); // Moved to the top, before any conditional logic
+
   const userId = localStorage.getItem('userId') || 8; // Assuming userId = 8
   const username = localStorage.getItem('username'); // Fetching username from local storage
-  const password = localStorage.getItem('password'); // Fetching
-  
+  const password = localStorage.getItem('password'); // Fetching password from local storage
 
   const decryptData = (encryptedData) => {
     const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
     return bytes.toString(CryptoJS.enc.Utf8);
   };
-  
+
   const decryptedPassword = decryptData(password);
 
   useEffect(() => {
@@ -31,8 +32,8 @@ const PolicySection = () => {
       try {
         const response = await axios.get(`http://localhost:8081/api/${policyType}/user/${userId}`, {
           headers: {
-            'Authorization': 'Basic ' + btoa(`${username}:${decryptedPassword}`) // Using credentials from local storage
-          }
+            Authorization: 'Basic ' + btoa(`${username}:${decryptedPassword}`), // Using credentials from local storage
+          },
         });
         return response.data; // Return fetched data
       } catch (error) {
@@ -57,7 +58,7 @@ const PolicySection = () => {
     };
 
     fetchAllPolicies();
-  }, [userId]);
+  }, [userId, decryptedPassword, username]);
 
   useEffect(() => {
     if (!loading) {
@@ -105,7 +106,7 @@ const PolicySection = () => {
 
       <h3 className={styles.sectionTitle}>Your Health Policies</h3>
       {healthPolicies.length > 0 ? (
-        healthPolicies.map(policy => (
+        healthPolicies.map((policy) => (
           <div className={styles.policyCard} key={policy.policyNumber}>
             <div className={styles.policyInfo}>
               <span>Policy Number: {policy.policyNumber}</span>
@@ -116,8 +117,9 @@ const PolicySection = () => {
               <span>Claim Limit: ${policy.claimLimit}</span>
             </div>
             <div className={styles.policyActions}>
-              <button className={styles.actionBtn}>View</button>
-              <button className={styles.actionBtn}>Renew</button>
+              <button className={styles.actionBtn} onClick={() => navigate('/health-policy-update')}>
+                Update
+              </button>
               <button className={styles.actionBtn}>Claim</button>
             </div>
           </div>
@@ -128,7 +130,7 @@ const PolicySection = () => {
 
       <h3 className={styles.sectionTitle}>Your Life Insurance Policies</h3>
       {lifePolicies.length > 0 ? (
-        lifePolicies.map(policy => (
+        lifePolicies.map((policy) => (
           <div className={styles.policyCard} key={policy.policyNumber}>
             <div className={styles.policyInfo}>
               <span>Policy Number: {policy.policyNumber}</span>
@@ -142,8 +144,7 @@ const PolicySection = () => {
               <span>Terms & Conditions: {policy.termsAndConditions}</span>
             </div>
             <div className={styles.policyActions}>
-              <button className={styles.actionBtn}>View</button>
-              <button className={styles.actionBtn}>Renew</button>
+              <button className={styles.actionBtn} onClick={() => navigate('/life-policy-update')}>Update</button>
               <button className={styles.actionBtn}>Claim</button>
             </div>
           </div>
@@ -154,14 +155,16 @@ const PolicySection = () => {
 
       <h3 className={styles.sectionTitle}>Your Motor Insurance Policies</h3>
       {motorPolicies.length > 0 ? (
-        motorPolicies.map(policy => (
+        motorPolicies.map((policy) => (
           <div className={styles.policyCard} key={policy.policyNumber}>
             <div className={styles.policyInfo}>
               <span>Policy Number: {policy.policyNumber}</span>
               <span>Policy Name: Motor Insurance</span>
               <span>Premium Amount: ${policy.premiumAmount}</span>
               <span>Coverage Amount: ${policy.coverageAmount}</span>
-              <span>Vehicle: {policy.vehicleMake} {policy.vehicleModel}</span>
+              <span>
+                Vehicle: {policy.vehicleMake} {policy.vehicleModel}
+              </span>
               <span>Registration Number: {policy.vehicleRegistrationNumber}</span>
               <span>Beneficiary: {policy.beneficiaryDetails}</span>
               <span>Policy Status: {policy.policyStatus}</span>
@@ -169,8 +172,7 @@ const PolicySection = () => {
               <span>Terms & Conditions: {policy.termsAndConditions}</span>
             </div>
             <div className={styles.policyActions}>
-              <button className={styles.actionBtn}>View</button>
-              <button className={styles.actionBtn}>Renew</button>
+              <button className={styles.actionBtn} onClick={() => navigate('/motor-policy-update')}>Update</button>
               <button className={styles.actionBtn}>Claim</button>
             </div>
           </div>
@@ -181,7 +183,7 @@ const PolicySection = () => {
 
       <h3 className={styles.sectionTitle}>Your Travel Insurance Policies</h3>
       {travelPolicies.length > 0 ? (
-        travelPolicies.map(policy => (
+        travelPolicies.map((policy) => (
           <div className={styles.policyCard} key={policy.policyNumber}>
             <div className={styles.policyInfo}>
               <span>Policy Number: {policy.policyNumber}</span>
@@ -194,8 +196,7 @@ const PolicySection = () => {
               <span>Terms & Conditions: {policy.termsAndConditions}</span>
             </div>
             <div className={styles.policyActions}>
-              <button className={styles.actionBtn}>View</button>
-              <button className={styles.actionBtn}>Renew</button>
+              <button className={styles.actionBtn} onClick={() => navigate('/travel-policy-update')}>Update</button>
               <button className={styles.actionBtn}>Claim</button>
             </div>
           </div>

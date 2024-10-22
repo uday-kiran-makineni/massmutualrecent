@@ -15,8 +15,6 @@ const PaymentsSection = () => {
           <span>Premium Amount: $200</span>
         </div>
       </div>
-
-      <button className={styles.paymentButton}>Make a Payment</button>
     </section>
   );
 };

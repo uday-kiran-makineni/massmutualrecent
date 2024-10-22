@@ -97,7 +97,7 @@ const ClaimsSection = () => {
                     </thead>
                     <tbody>
                         {claims.map(claim => (
-                            <tr key={claim.id} style={{ border: `2px solid ${getStatusBorderColor(claim.status)}` }}>
+                            <tr key={claim.id} style={{ border: `4px solid ${getStatusBorderColor(claim.status)}` }}>
                                 <td>{claim.policyHolderName}</td>
                                 <td>{claim.policyType}</td>
                                 <td>${claim.coverageAmount.toLocaleString()}</td>
@@ -112,6 +112,8 @@ const ClaimsSection = () => {
             )}
         </div>
     );
+
 };
 
 export default ClaimsSection;
+

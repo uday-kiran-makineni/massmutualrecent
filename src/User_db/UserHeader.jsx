@@ -2,7 +2,7 @@ import  { useState } from 'react';
 import {Link} from 'react-router-dom';
 import styles from './UserHeader.module.css';
 import logo from './assets/nobglogo.png'; // Import your logo image
-import profilePic from './assets/profile.jpg'; // Import a profile picture (replace with real image)
+
 
 const UserHeader = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -23,8 +23,8 @@ const UserHeader = () => {
                 </ul>
             </nav>
             <div className={styles.profile}>
-                <img
-                    src={profilePic}
+                <img 
+                    src="https://res.cloudinary.com/dfkfysygf/image/upload/v1709352028/profile_dohabp.svg"
                     alt="Profile"
                     className={styles.profilePic}
                     onClick={toggleDropdown} // Toggle dropdown on click

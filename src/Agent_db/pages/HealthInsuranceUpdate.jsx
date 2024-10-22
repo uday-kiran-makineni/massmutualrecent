@@ -174,7 +174,6 @@ const HealthInsuranceForm = () => {
                             value={formData.userEmail}
                             onChange={handleChange}
                             className="form-input"
-                            readOnly // Read-only field
                         />
                     </div>
 
