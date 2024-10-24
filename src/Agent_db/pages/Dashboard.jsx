@@ -13,7 +13,7 @@ const dashboardItems = [
   { name: 'Claims', icon: '📋', route: '/claim' },
   { name: 'Proposal', icon: '📑' },
   { name: 'Pending Renewals', icon: '↻', route: '/expired-policies-page' },
-  { name: 'Contests', icon: '📅' },
+  { name: 'Contests', icon: '📅' , route: '/contests-page'},
   { name: 'Earnings', icon: '💵', route: '/earnings-page' },
   { name: 'Locate', icon: '📍' },
   { name: 'Leads', icon: '🧑‍🤝‍🧑' },

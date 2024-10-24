@@ -42,6 +42,7 @@ import MotorPolicyDelete from './Agent_db/pages/MotorPolicyDelete.jsx';
 import PaymentPage from './Agent_db/pages/PaymentPage.jsx';
 import InactiveExpiredPolicies from './Agent_db/pages/PendingRenewals.jsx';
 import EarningsSection from './Agent_db/pages/EarningsPage.jsx';
+import ContestsSection from './Agent_db/pages/Contests.jsx';
 
 function App() {
   return (
@@ -86,6 +87,7 @@ function App() {
         <Route path="/products" element={<Products/>}/>
         <Route path="/payment-page" element={<PaymentPage/>}/>
         <Route path="/earnings-page" element={<EarningsSection/>}/>
+        <Route path="/contests-page" element={<ContestsSection/>}/>
         <Route path="/expired-policies-page" element={<InactiveExpiredPolicies/>}/>
       </Routes>
     </Router>
