@@ -10,6 +10,7 @@
   align-items: center;
   display: inline-block;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
   margin-left: 23%;
   margin-top: 20px;
   border-color: rgb(1, 47, 107);
@@ -25,6 +26,12 @@
   color: rgb(124, 126, 129);
   box-shadow: none;
   display: inline;
+  width: 300px;
+}
+
+.Formbg input[type="radio"]{
+  width: auto;
+  margin-right: 5px;
 }
 
 .Formbg input[type="submit"]{
@@ -48,14 +55,17 @@
   color: rgb(0, 0, 0);
   box-shadow: none;
   background-color: white;
+  width: 300px;
 }
 
 .title{
   text-align:center;
+  margin-bottom: 30px;
 }
 
 .Formbg label{
-  display: inline;
+  display: inline-block;
+  width: 200px;
 }
 
 .Formbg textarea{
@@ -67,4 +77,9 @@
   color: rgb(0, 0, 0);
   box-shadow: none;
   background-color: white;
+}
+
+.Formbg h3{
+  color: rgb(1, 47, 107);
+  font-size:x-large;
 }

@@ -8,6 +8,7 @@
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  padding: 20px;
   }
   
   .scrollableContent {
@@ -43,13 +44,12 @@
   }
 
   .AppWindow{
-    background-color: white;
     text-align: left;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 20px;
-    margin-top: 20px;
     display: inline;
+    /* margin-top: 100px; */
   }
+
 
   .qrimg{
     height: 100px;
@@ -61,6 +61,8 @@
   .textBelow{
     color: rgb(94, 98, 102);
     font-size: smaller;
+    margin-left: 50px;
+    padding-top:10px ;
   }
   
   .appContainer input{

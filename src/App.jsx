@@ -39,6 +39,9 @@ import MotorInsuranceUpdate from './Agent_db/pages/MotorInsuranceUpdate.jsx';
 import UpdateTravelInsurance from './Agent_db/pages/TravelInsuranceUpdate.jsx';
 import TravelPolicyDelete from './Agent_db/pages/TravelInsuranceDelete.jsx';
 import MotorPolicyDelete from './Agent_db/pages/MotorPolicyDelete.jsx';
+import PaymentPage from './Agent_db/pages/PaymentPage.jsx';
+import InactiveExpiredPolicies from './Agent_db/pages/PendingRenewals.jsx';
+import EarningsSection from './Agent_db/pages/EarningsPage.jsx';
 
 function App() {
   return (
@@ -81,6 +84,9 @@ function App() {
         <Route path="/acknowledgement" element={<TermsAndConditions/>}/>
         <Route path="/business" element={<MyBusiness/>}/>
         <Route path="/products" element={<Products/>}/>
+        <Route path="/payment-page" element={<PaymentPage/>}/>
+        <Route path="/earnings-page" element={<EarningsSection/>}/>
+        <Route path="/expired-policies-page" element={<InactiveExpiredPolicies/>}/>
       </Routes>
     </Router>
   );

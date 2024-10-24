@@ -121,8 +121,7 @@ const PolicySection = () => {
               <span>Claim Limit: ${policy.claimLimit}</span>
             </div>
             <div className={styles.policyActions}>
-              <button className={styles.actionBtn}>View</button>
-              <button className={styles.actionBtn}>Renew</button>
+            <button className={styles.actionBtn}>Update</button>
               <button className={styles.actionBtn}>Claim</button>
             </div>
           </div>
@@ -147,9 +146,8 @@ const PolicySection = () => {
               <span>Terms & Conditions: {policy.termsAndConditions}</span>
             </div>
             <div className={styles.policyActions}>
-              <button className={styles.actionBtn}>View</button>
-              <button className={styles.actionBtn}>Renew</button>
-              <button className={styles.actionBtn}>Claim</button>
+            <button className={styles.actionBtn}>Update</button>
+            <button className={styles.actionBtn}>Claim</button>
             </div>
           </div>
         ))
@@ -174,9 +172,8 @@ const PolicySection = () => {
               <span>Terms & Conditions: {policy.termsAndConditions}</span>
             </div>
             <div className={styles.policyActions}>
-              <button className={styles.actionBtn}>View</button>
-              <button className={styles.actionBtn}>Renew</button>
-              <button className={styles.actionBtn}>Claim</button>
+            <button className={styles.actionBtn}>Update</button>
+            <button className={styles.actionBtn}>Claim</button>
             </div>
           </div>
         ))
@@ -199,9 +196,8 @@ const PolicySection = () => {
               <span>Terms & Conditions: {policy.termsAndConditions}</span>
             </div>
             <div className={styles.policyActions}>
-              <button className={styles.actionBtn}>View</button>
-              <button className={styles.actionBtn}>Renew</button>
-              <button className={styles.actionBtn}>Claim</button>
+            <button className={styles.actionBtn}>Update</button>
+            <button className={styles.actionBtn}>Claim</button>
             </div>
           </div>
         ))

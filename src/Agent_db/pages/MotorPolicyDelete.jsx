@@ -35,23 +35,26 @@ const MotorPolicyDelete = () => {
     };
 
     return (
-        <div>
-            <h1>Delete Motor Insurance Policy</h1>
+        <div style={{ maxWidth: '400px', margin: '30vh auto', padding: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', backgroundColor: '#f9f9f9' }}>
+            <h1 style={{ fontSize: '24px', marginBottom: '20px', textAlign: 'center' }}>Delete Motor Insurance Policy</h1>
             <form onSubmit={handleDelete}>
-                <div>
-                    <label htmlFor="policyNumber">Policy Number:</label>
+                <div style={{ marginBottom: '15px' }}>
+                    <label htmlFor="policyNumber" style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Policy Number:</label>
                     <input
                         type="text"
                         id="policyNumber"
                         value={policyNumber}
                         onChange={(e) => setPolicyNumber(e.target.value)}
                         required
+                        style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }}
                     />
                 </div>
-                <button type="submit">Delete Policy</button>
+                <button type="submit" style={{ width: '100%', padding: '10px', borderRadius: '4px', border: 'none', backgroundColor: '#002451', color: 'white', fontSize: '16px', cursor: 'pointer' }}>
+                    Delete Policy
+                </button>
             </form>
-            {message && <p style={{ color: 'green' }}>{message}</p>}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {message && <p style={{ color: 'green', textAlign: 'center', marginTop: '10px' }}>{message}</p>}
+            {error && <p style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>{error}</p>}
         </div>
     );
 };

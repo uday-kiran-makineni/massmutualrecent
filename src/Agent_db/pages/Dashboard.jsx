@@ -9,18 +9,16 @@ import UserFooter from '../../User_db/UserFooter';
 
 const dashboardItems = [
   { name: 'My policies', icon: '↻', route: '/Policies' }, 
-  { name: 'My Business', icon: '💰' , route: '/business' },
+  // { name: 'My Business', icon: '💰' , route: '/business' },
   { name: 'Claims', icon: '📋', route: '/claim' },
   { name: 'Proposal', icon: '📑' },
-  { name: 'Pending Renewals', icon: '↻' },
-  { name: 'My Day', icon: '📅' },
-  { name: 'Earnings', icon: '💵' },
+  { name: 'Pending Renewals', icon: '↻', route: '/expired-policies-page' },
+  { name: 'Contests', icon: '📅' },
+  { name: 'Earnings', icon: '💵', route: '/earnings-page' },
   { name: 'Locate', icon: '📍' },
   { name: 'Leads', icon: '🧑‍🤝‍🧑' },
   { name: 'Acknowledgement', icon: '✅', route: '/acknowledgement' },
-  { name: 'Service Request', icon: '❓' },
-  { name: 'Payment Link', icon: '🔗' },
-  { name: 'Reports', icon: '📑' },
+  { name: 'Payment Link', icon: '🔗', route: '/payment-page' },
   { name: 'Product 360', icon: '❤️', route: '/products' },
   { name: 'My Customers', icon: '👥' }
 ];
