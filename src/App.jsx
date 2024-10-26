@@ -43,6 +43,14 @@ import PaymentPage from './Agent_db/pages/PaymentPage.jsx';
 import InactiveExpiredPolicies from './Agent_db/pages/PendingRenewals.jsx';
 import EarningsSection from './Agent_db/pages/EarningsPage.jsx';
 import ContestsSection from './Agent_db/pages/Contests.jsx';
+import DownloadHealthInsuranceForm from './Agent_db/pages/DownloadHealthInsuranceForm.jsx';
+import InsuranceCardsDownloads from './Agent_db/pages/InsuranceCardsDownloads.jsx';
+import DownloadLifeInsuranceForm from './Agent_db/pages/DownloadLifeInsuranceForm.jsx';
+import DownloadTravelInsuranceForm from './Agent_db/pages/DownloadTravelInsuranceForm.jsx';
+import DownloadMotorInsuranceForm from './Agent_db/pages/DownloadMotorInsuranceForm.jsx';
+import CustomerList from './Agent_db/pages/MyCustomers.jsx';
+import AgentClubDashboard from './Agent_db/pages/Clubs.jsx';
+import Locate from './Agent_db/pages/Locate.jsx';
 
 function App() {
   return (
@@ -88,7 +96,15 @@ function App() {
         <Route path="/payment-page" element={<PaymentPage/>}/>
         <Route path="/earnings-page" element={<EarningsSection/>}/>
         <Route path="/contests-page" element={<ContestsSection/>}/>
+        <Route path="/download-forms" element={<InsuranceCardsDownloads/>}/>
+        <Route path="/download-healthform" element={<DownloadHealthInsuranceForm/>}/>
+        <Route path="/download-lifeform" element={<DownloadLifeInsuranceForm/>}/>
+        <Route path="/download-travelform" element={<DownloadTravelInsuranceForm/>}/>
+        <Route path="/download-motorform" element={<DownloadMotorInsuranceForm/>}/>
         <Route path="/expired-policies-page" element={<InactiveExpiredPolicies/>}/>
+        <Route path="/customers" element={<CustomerList/>}/>
+        <Route path="/clubs" element={<AgentClubDashboard/>}/>
+        <Route path="/locate" element={<Locate/>}/>
       </Routes>
     </Router>
   );

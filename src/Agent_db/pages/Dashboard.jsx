@@ -11,16 +11,16 @@ const dashboardItems = [
   { name: 'My policies', icon: '↻', route: '/Policies' }, 
   // { name: 'My Business', icon: '💰' , route: '/business' },
   { name: 'Claims', icon: '📋', route: '/claim' },
-  { name: 'Proposal', icon: '📑' },
+  { name: 'Proposal', icon: '📑' ,route: '/download-forms'},
   { name: 'Pending Renewals', icon: '↻', route: '/expired-policies-page' },
   { name: 'Contests', icon: '📅' , route: '/contests-page'},
   { name: 'Earnings', icon: '💵', route: '/earnings-page' },
-  { name: 'Locate', icon: '📍' },
-  { name: 'Leads', icon: '🧑‍🤝‍🧑' },
+  { name: 'Locate', icon: '📍', route: '/locate' },
+  { name: 'Clubs', icon: '🧑‍🤝‍🧑', route: '/clubs' },
   { name: 'Acknowledgement', icon: '✅', route: '/acknowledgement' },
   { name: 'Payment Link', icon: '🔗', route: '/payment-page' },
   { name: 'Product 360', icon: '❤️', route: '/products' },
-  { name: 'My Customers', icon: '👥' }
+  { name: 'My Customers', icon: '👥' , route: '/customers'}
 ];
 
 const Dashboard = () => {
