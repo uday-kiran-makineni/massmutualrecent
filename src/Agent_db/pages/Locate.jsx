@@ -1,71 +1,104 @@
-import React, { useState } from 'react';
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import React, { useEffect, useState } from "react";
 
 const Locate = () => {
-  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [map, setMap] = useState(null);
+  const [infoWindow, setInfoWindow] = useState(null); // State for managing the InfoWindow
+  const [currentMarker, setCurrentMarker] = useState(null); // State to track the current marker
 
-  // Example data: List of locations, each with type and coordinates
   const locations = [
-    { id: 1, name: "City Hospital", type: "Hospital", lat: 37.7749, lng: -122.4194 },
-    { id: 2, name: "Metro Diagnostics", type: "Diagnostic Center", lat: 37.7849, lng: -122.4094 },
-    { id: 3, name: "Branch Office", type: "Office", lat: 37.7649, lng: -122.4294 },
+    { lat: 28.6139, lng: 77.2090, name: "City Hospital", type: "Hospital" },
+    { lat: 19.0760, lng: 72.8777, name: "Metro Diagnostics", type: "Diagnostic Center" },
+    { lat: 13.0827, lng: 80.2707, name: "Branch Office", type: "Office" },
+    { lat: 12.9716, lng: 77.5946, name: "Zonal Office", type: "Office" },
+    { lat: 22.5726, lng: 88.3639, name: "Care Hospital", type: "Hospital" },
   ];
 
-  // Center map on a default location
-  const mapCenter = { lat: 37.7749, lng: -122.4194 };
-
-  const handleMarkerClick = (location) => {
-    setSelectedLocation(location);
-  };
-
-  const handleDirectionsClick = () => {
-    if (selectedLocation) {
-      const directionsLink = `https://www.google.com/maps/dir/?api=1&destination=${selectedLocation.lat},${selectedLocation.lng}`;
-      navigator.clipboard.writeText(directionsLink);
-      alert("Directions link copied to clipboard! Share it with the user.");
+  // Function to return the appropriate icon URL based on the type
+  const getMarkerIcon = (type) => {
+    switch (type) {
+      case "Hospital":
+        return "https://res.cloudinary.com/dfkfysygf/image/upload/v1729922942/hospital_Icon_pniygz.svg";
+      case "Diagnostic Center":
+        return "https://res.cloudinary.com/dfkfysygf/image/upload/v1729923172/diag_Icon_zguaac.svg";
+      case "Office":
+        return "https://res.cloudinary.com/dfkfysygf/image/upload/v1729923229/Build_Icon_a1yk5b.svg";
+      default:
+        return "https://maps.google.com/mapfiles/ms/icons/red-dot.png"; // Default icon if type is unknown
     }
   };
 
-  const getMarkerIcon = (type) => {
-    return type === "Hospital" ? "/assets/hospital-icon.png" :
-           type === "Diagnostic Center" ? "/assets/diagnostic-icon.png" : 
-           "/assets/office-icon.png";
-  };
+  useEffect(() => {
+    const initMap = () => {
+      const googleMaps = window.google.maps;
+      const mapOptions = {
+        zoom: 5,
+        center: new googleMaps.LatLng(20.5937, 78.9629), // Center of India
+      };
+      const mapInstance = new googleMaps.Map(document.getElementById("map"), mapOptions);
+      setMap(mapInstance);
 
-  return (
-    <LoadScript googleMapsApiKey="AIzaSyBHdWfATegytaxRA7ESHintKP0QazsVTbk">
-      <GoogleMap
-        mapContainerStyle={{ height: "500px", width: "100%" }}
-        zoom={12}
-        center={mapCenter}
-      >
-        {window.google && locations.map((location) => (
-          <Marker
-            key={location.id}
-            position={{ lat: location.lat, lng: location.lng }}
-            onClick={() => handleMarkerClick(location)}
-            icon={{
-              url: getMarkerIcon(location.type),
-              scaledSize: new window.google.maps.Size(30, 30),
-            }}
-          />
-        ))}
+      const infoWindowInstance = new googleMaps.InfoWindow();
+      setInfoWindow(infoWindowInstance); // Set the InfoWindow instance
 
-        {selectedLocation && (
-          <InfoWindow
-            position={{ lat: selectedLocation.lat, lng: selectedLocation.lng }}
-            onCloseClick={() => setSelectedLocation(null)}
-          >
+      locations.forEach((location) => {
+        const marker = new googleMaps.Marker({
+          position: { lat: location.lat, lng: location.lng },
+          map: mapInstance,
+          title: location.name,
+          icon: {
+            url: getMarkerIcon(location.type), // Use the function to get the icon based on type
+            scaledSize: new googleMaps.Size(30, 30), // Custom size
+          },
+        });
+
+        marker.addListener("click", () => {
+          // Close the previous InfoWindow
+          if (currentMarker) {
+            infoWindowInstance.close();
+          }
+
+          const contentString = `
             <div>
-              <h3>{selectedLocation.name}</h3>
-              <p>Type: {selectedLocation.type}</p>
-              <button onClick={handleDirectionsClick}>Get Directions</button>
+              <strong>${location.name}</strong><br>
+              Type: ${location.type}<br>
+              <button id="get-directions" style="cursor: pointer;">Get Directions</button>
             </div>
-          </InfoWindow>
-        )}
-      </GoogleMap>
-    </LoadScript>
-  );
+          `;
+
+          infoWindowInstance.setContent(contentString);
+          infoWindowInstance.open(mapInstance, marker);
+
+          // Store the current marker
+          setCurrentMarker(marker);
+
+          // Get the directions URL
+          const directionsLink = `https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}`;
+
+          // Add event listener to the button
+          google.maps.event.addListenerOnce(infoWindowInstance, 'domready', () => {
+            const directionsButton = document.getElementById('get-directions');
+            directionsButton.addEventListener('click', () => {
+              navigator.clipboard.writeText(directionsLink).then(() => {
+                alert("Directions link copied to clipboard!");
+              });
+            });
+          });
+        });
+      });
+    };
+
+    if (window.google) {
+      initMap();
+    } else {
+      const script = document.createElement("script");
+      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBHdWfATegytaxRA7ESHintKP0QazsVTbk`; // Replace with your API Key
+      script.async = true;
+      script.onload = initMap;
+      document.head.appendChild(script);
+    }
+  }, []);
+
+  return <div id="map" style={{ height: "700px", width: "100%" }} />;
 };
 
 export default Locate;
