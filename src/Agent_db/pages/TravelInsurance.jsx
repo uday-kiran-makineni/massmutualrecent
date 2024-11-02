@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from '../styles/AddPolicy.module.css';
 import axios from "axios";
+import Navbar from '../components/Navbar';
 
 function TravelInsurance() {
   const [formData, setFormData] = useState({
@@ -154,6 +155,8 @@ function TravelInsurance() {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className={styles.Formbg}>
       <h1 className={styles.title}>Travel Insurance Policy Form</h1>
       {successMessage && <div style={{ color: 'green' }}>{successMessage}</div>}
@@ -291,6 +294,7 @@ function TravelInsurance() {
         <button type="submit">Submit</button>
       </form>
     </div>
+    </>
   );
 }
 

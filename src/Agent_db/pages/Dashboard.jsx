@@ -3,23 +3,21 @@ import Navbar from '../components/Navbar';
 import AdminFooter from '../components/AdminFooter';
 import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
-import Footer from '../../login/Footer';
-import ExtraFooter from '../../landing/ExtraFooter';
-import UserFooter from '../../User_db/UserFooter';
+import AgentFooter from './AgentFooter';
 
 const dashboardItems = [
-  { name: 'My policies', icon: '↻', route: '/Policies' }, 
+  { name: 'My policies', icon: '📜', route: '/Policies' }, 
   // { name: 'My Business', icon: '💰' , route: '/business' },
   { name: 'Claims', icon: '📋', route: '/claim' },
   { name: 'Proposal', icon: '📑' ,route: '/download-forms'},
-  { name: 'Pending Renewals', icon: '↻', route: '/expired-policies-page' },
-  { name: 'Contests', icon: '📅' , route: '/contests-page'},
+  { name: 'Pending Renewals', icon: '🔄', route: '/expired-policies-page' },
+  { name: 'Contests', icon: '🏆' , route: '/contests-page'},
   { name: 'Earnings', icon: '💵', route: '/earnings-page' },
   { name: 'Locate', icon: '📍', route: '/locate' },
-  { name: 'Clubs', icon: '🧑‍🤝‍🧑', route: '/clubs' },
+  { name: 'Clubs', icon: '🤝', route: '/clubs' },
   { name: 'Acknowledgement', icon: '✅', route: '/acknowledgement' },
   { name: 'Payment Link', icon: '🔗', route: '/payment-page' },
-  { name: 'Product 360', icon: '❤️', route: '/products' },
+  { name: 'Product 360', icon: '🌟', route: '/products' },
   { name: 'My Customers', icon: '👥' , route: '/customers'}
 ];
 
@@ -48,7 +46,7 @@ const Dashboard = () => {
           <button 
             className="btn create-btn" 
             onClick={() => navigate('/add-policy')} // Navigate to AddPolicy when clicked
-          >
+        >
             Create Policy
           </button>
           <button className="btn update-btn"  onClick={() => navigate('/update-policy')}>Update Policy</button>
@@ -68,7 +66,7 @@ const Dashboard = () => {
           </div>
         ))}
       </div>
-      <UserFooter/>
+      <AgentFooter/>
     </>
   );
 };

@@ -1,8 +1,9 @@
-/* @import  './App.module.css'; */
 .footer {
     /* padding: 1rem; */
-    height: 40px;
-    padding:0 0 0 20px;
+    height: 30px;
+    padding: 20px;
+    margin-bottom: 20px;
+
 }
 .footer p{
     text-align: center;

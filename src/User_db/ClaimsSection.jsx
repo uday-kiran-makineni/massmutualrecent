@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
-import './ClaimsSection.module.css'; // Import a CSS file for additional styles
+import './ClaimsSection.css'; // Import a CSS file for additional styles
 
 const ClaimsSection = () => {
     const [claims, setClaims] = useState([]);
@@ -81,11 +81,11 @@ const ClaimsSection = () => {
     };
 
     return (
-        <div className="container"> {/* Wrap the table in a container */}
-            <h2>Your Claims</h2>
+        <div> {/* Wrap the table in a container */}
+            <h2 className="claims-para">Your Claims</h2>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {claims.length > 0 ? (
-                <table className="claims-table">
+                <table>
                     <thead>
                         <tr>
                             <th>Policy Holder</th>

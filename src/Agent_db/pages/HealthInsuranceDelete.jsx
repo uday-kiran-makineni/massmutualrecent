@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import Navbar from '../components/Navbar';
+import Nagentfooter from './Nagentfooter';
 const HealthPolicyDelete = () => {
     const [policyNumber, setPolicyNumber] = useState('');
     const [message, setMessage] = useState('');
@@ -34,6 +35,7 @@ const HealthPolicyDelete = () => {
     };
 
     return (
+        <><Navbar/>
         <div style={{ maxWidth: '400px', margin: '30vh auto', padding: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', backgroundColor: '#f9f9f9' }}>
             <h1 style={{ fontSize: '24px', marginBottom: '20px', textAlign: 'center' }}>Delete Health Policy</h1>
             <form onSubmit={handleDelete}>
@@ -55,6 +57,8 @@ const HealthPolicyDelete = () => {
             {message && <p style={{ color: 'green', textAlign: 'center', marginTop: '10px' }}>{message}</p>}
             {error && <p style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>{error}</p>}
         </div>
+        <Nagentfooter/>
+        </>
     );
 };
 

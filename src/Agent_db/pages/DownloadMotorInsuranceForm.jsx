@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import jsPDF from "jspdf"; // Import jsPDF
 import styles from '../styles/AddPolicy.module.css';
+import Navbar from "../components/Navbar";
+import AgentFooter from "./AgentFooter";
 
 function DownloadMotorInsuranceForm() {
   const [formData, setFormData] = useState({
@@ -159,6 +161,8 @@ function DownloadMotorInsuranceForm() {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className={styles.Formbg}>
       <h1 className={styles.title}>Motor Insurance Policy Form</h1>
       {message && <div style={{ color: 'green' }}>{message}</div>}
@@ -285,11 +289,11 @@ function DownloadMotorInsuranceForm() {
         />
         {errors.coverageAmount && <span style={{ color: 'red' }}>{errors.coverageAmount}</span>}
         <br /><hr />
-
-        <button type="submit">Submit Policy</button>
         <button type="button" onClick={downloadPDF}>Download PDF</button>
       </form>
     </div>
+    <AgentFooter/>
+    </>
   );
 }
 

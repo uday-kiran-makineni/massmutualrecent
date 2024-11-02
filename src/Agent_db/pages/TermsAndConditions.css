@@ -12,6 +12,7 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
     max-width: 800px; /* Max width for the container */
     margin: 40px auto; /* Center the container with auto margins */
+    margin-top: 80px;
   }
   
   .terms-container h2 {

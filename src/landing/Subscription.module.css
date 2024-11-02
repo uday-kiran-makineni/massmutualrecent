@@ -3,6 +3,9 @@
     padding: 2rem;
     text-align: center;
 }
+.subscription h2{
+    color: #000000db;
+}
 
 .emailInput {
     padding: 1rem;

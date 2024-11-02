@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import Header from './Header.jsx'; // Ensure this path is correct
-import Footer from './Footer.jsx'; // Ensure this path is correct
+import Footer from '../landing/Footer.jsx'; // Ensure this path is correct
 import styles from './Login.module.css'; // Ensure this path is correct
 import QRimg from './assets/mm-app-qr.png'; // Ensure this path is correct
 import CryptoJS from 'crypto-js'; // Import crypto-js for encryption

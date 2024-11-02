@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './AgentClubDashboard.module.css';
 import Navbar from '../components/Navbar';
-import UserFooter from '../../User_db/UserFooter';
+import AgentFooter from './AgentFooter'
 
 // Define club levels, thresholds, and benefits
 const clubLevels = [
@@ -133,7 +133,7 @@ const AgentClubDashboard = () => {
           </div>
         )}
       </section>
-      <UserFooter />
+      <AgentFooter />
     </>
   );
 };

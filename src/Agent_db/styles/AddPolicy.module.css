@@ -11,10 +11,11 @@
   display: inline-block;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
-  margin-left: 23%;
+  margin-left: 26%;
   margin-top: 20px;
   border-color: rgb(1, 47, 107);
   border-width: 2.5px;
+  margin-top: 70px;
 }
 
 .Formbg input{

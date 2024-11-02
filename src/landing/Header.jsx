@@ -28,8 +28,7 @@ const Header = () => {
                     <li><a href="#WhyChoose">About Us</a></li>
                     <li><a href="#Plans">Plans</a></li>
                     <li><a href="#Contact">Contact</a></li>
-                    <li><Link to="/Login">Login</Link></li>
-                    
+                    <li className={styles.Login}><Link to="/Login">Login</Link></li>              
                 </ul>
             </nav>
         </header>

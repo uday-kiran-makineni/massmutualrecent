@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from '../styles/AddPolicy.module.css';
 import axios from "axios";
-
+import Navbar from '../components/Navbar';
 function UpdateLifeInsurance() {
   const [formData, setFormData] = useState({
     policyNumber: "",
@@ -145,6 +145,8 @@ function UpdateLifeInsurance() {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className={styles.Formbg}>
       <h1 className={styles.title}>Update Life Insurance Policy</h1>
       <label>Enter Policy Number</label>
@@ -286,6 +288,7 @@ function UpdateLifeInsurance() {
         <button type="submit" className={styles.submitBtn}>Update Policy</button>
       </form>
     </div>
+    </>
   );
 }
 

@@ -120,7 +120,7 @@ const PolicySection = () => {
               <button className={styles.actionBtn} onClick={() => navigate('/health-policy-update')}>
                 Update
               </button>
-              <button className={styles.actionBtn}>Claim</button>
+              
             </div>
           </div>
         ))
@@ -145,7 +145,7 @@ const PolicySection = () => {
             </div>
             <div className={styles.policyActions}>
               <button className={styles.actionBtn} onClick={() => navigate('/life-policy-update')}>Update</button>
-              <button className={styles.actionBtn}>Claim</button>
+              
             </div>
           </div>
         ))
@@ -173,7 +173,7 @@ const PolicySection = () => {
             </div>
             <div className={styles.policyActions}>
               <button className={styles.actionBtn} onClick={() => navigate('/motor-policy-update')}>Update</button>
-              <button className={styles.actionBtn}>Claim</button>
+              
             </div>
           </div>
         ))
@@ -197,7 +197,7 @@ const PolicySection = () => {
             </div>
             <div className={styles.policyActions}>
               <button className={styles.actionBtn} onClick={() => navigate('/travel-policy-update')}>Update</button>
-              <button className={styles.actionBtn}>Claim</button>
+              
             </div>
           </div>
         ))

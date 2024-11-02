@@ -6,10 +6,14 @@
     background-color: rgb(1, 47,107);
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+    top:0;
+    z-index: 100;
+    position: sticky;
+    height: 60px;
 }
 
 .logo {
-    width: 150px; 
+    width: 200px; 
 }
 
 .nav {
@@ -20,6 +24,7 @@
     display: flex;
     list-style: none;
     gap: 1.5rem;
+    padding-top: 25px;
 }
 
 .navLinks a {

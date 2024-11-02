@@ -16,7 +16,7 @@ body {
 .chatbot-icon {
     width: 60px;
     height: 60px;
-    background-color: #28a745;
+    background-color: #1e983b;
     color: white;
     font-size: 30px;
     border-radius: 50%;
@@ -90,9 +90,9 @@ body {
 }
 
 .bot-message {
-    background-color: rgba(255, 255, 255, 0.2); /* Light background */
+    background-color: rgb(37, 115, 198); /* Light background */
     align-self: flex-start;
-    color:black
+    color:white;
 }
 
 /* Chat Input */
@@ -122,8 +122,7 @@ body {
 }
 
 .chat-input button:hover {
-    background-color: #218838;
-    color:black;
+    background-color: #0a8525d9;
 }
 
 /* Close Button */

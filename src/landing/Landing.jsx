@@ -9,7 +9,7 @@ function Landing() {
     <>
     <Header/>
     <Chatbot/>
-    <ExtraFooter/>
+    {/* <ExtraFooter/> */}
     <Footer/>
     </>
     );

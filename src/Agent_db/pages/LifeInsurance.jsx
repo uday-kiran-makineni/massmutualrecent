@@ -1,44 +1,29 @@
 import React, { useState, useEffect } from "react";
 import styles from '../styles/AddPolicy.module.css';
 import axios from "axios";
-
+import Navbar from '../components/Navbar';
 function LifeInsurance() {
   const [formData, setFormData] = useState({
-    policyNumber: "",
-    agentId: "",
-    agentEmail: "",
-    userId: "",
-    userEmail: "",
-    mobileNumber: "",
-    startDate: "",
-    endDate: "",
-    premiumAmount: "",
-    coverageAmount: "",
-    paymentFrequency: "",
-    policyStatus: "Inactive",
-    beneficiaryDetails: "",
-    policyType: "Term Life",
-    termsAndConditions: "",
-    sumAssured: "",
-    riskCoverDetails: ""
+    policyNumber: "LI2024009",
+          agentId: "1",
+          agentEmail: "agent1@gmail.com",
+          userId: "3",
+          userEmail: "makineni.uday1@gmail.com",
+          mobileNumber: "9177765166",
+          startDate: "2024-11-30 00:00:00.000000",
+          endDate: "2024-12-31 00:00:00.000000",
+          premiumAmount: "15000",
+          coverageAmount: "2000000",
+          paymentFrequency: "Monthly",
+          policyStatus: "Active",
+          beneficiaryDetails: "Jimmy - Friend",
+          policyType: "Term",
+          termsAndConditions: "Flexible premiums, adjustable death benefits.",
+          sumAssured: "50000",
+          riskCoverDetails: "Covers life with a lump-sum payout upon death."
   });
 
   const [errors, setErrors] = useState({});
-
-  useEffect(() => {
-    const storedAgentId = localStorage.getItem('agentId');
-    const storedAgentEmail = localStorage.getItem('agentEmail'); // Add this line to get agent email
-
-    if (storedAgentId) {
-      setFormData(prevState => ({
-        ...prevState,
-        agentId: storedAgentId,
-        agentEmail: storedAgentEmail || "" // Set agent email if available
-      }));
-    } else {
-      console.error('AgentId not found in local storage');
-    }
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -103,7 +88,30 @@ function LifeInsurance() {
           }
         });
         console.log('Form submitted successfully:', response.data);
+  
+        // Send email notification
+        const emailPayload = {
+          userEmail: formData.userEmail,
+          policyNumber: formData.policyNumber,
+          coverageAmount: formData.coverageAmount,
+          startDate: formData.startDate,
+          endDate: formData.endDate
+        };
         
+        try {
+          const emailResponse = await axios.post('http://localhost:8081/api/lifeinsurance/send_email', emailPayload, {
+            auth:{
+              username: 'user',
+              password: 'user'
+            }
+          });
+          console.log('Email sent successfully:', emailResponse.data);
+          alert("Policy created and email sent successfully!"); 
+        } catch (emailError) {
+          console.error('Error sending email:', emailError);
+          alert("Policy created, but there was an error sending the email.");
+        }
+  
         // Clear the form data
         setFormData({
           policyNumber: "",
@@ -124,21 +132,20 @@ function LifeInsurance() {
           sumAssured: "",
           riskCoverDetails: ""
         });
-        
-        // Display success message
-        alert("Policy created successfully!"); // You can replace this with a more sophisticated UI message if needed.
-        
+  
       } catch (error) {
         console.error('Error submitting form:', error);
-        // Handle error (e.g., show error message to user)
         alert("There was an error creating the policy. Please try again.");
       }
     } else {
       console.log("Form has errors. Please correct them.");
     }
   };
+  
 
   return (
+    <>
+    <Navbar/>
     <div className={styles.Formbg}>
       <h1 className={styles.title}>Life Insurance Policy Form</h1>
       <form onSubmit={handleSubmit}>
@@ -307,6 +314,7 @@ function LifeInsurance() {
         <button type="submit" className={styles.submitBtn}>Submit</button>
       </form>
     </div>
+    </>
   );
 }
 

@@ -19,7 +19,7 @@ const Locate = () => {
       case "Hospital":
         return "https://res.cloudinary.com/dfkfysygf/image/upload/v1729922942/hospital_Icon_pniygz.svg";
       case "Diagnostic Center":
-        return "https://res.cloudinary.com/dfkfysygf/image/upload/v1729923172/diag_Icon_zguaac.svg";
+        return "https://res.cloudinary.com/dfkfysygf/image/upload/v1729922942/hospital_Icon_pniygz.svg";
       case "Office":
         return "https://res.cloudinary.com/dfkfysygf/image/upload/v1729923229/Build_Icon_a1yk5b.svg";
       default:

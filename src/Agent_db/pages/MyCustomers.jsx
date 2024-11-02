@@ -3,8 +3,10 @@ import axios from 'axios';
 import styles from './CustomerList.module.css';
 import CryptoJS from 'crypto-js';
 import Navbar from '../components/Navbar';
-import UserFooter from '../../User_db/UserFooter';
+import AgentFooter from './AgentFooter';
+
 import * as XLSX from 'xlsx';
+import Nagentfooter from './Nagentfooter';
 
 const secretKey = 'your-secret-key';
 
@@ -118,7 +120,7 @@ const CustomerList = () => {
           <p>No customers found.</p>
         )}
       </section>
-      <UserFooter />
+      <Nagentfooter />
     </>
   );
 };

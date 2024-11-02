@@ -1,35 +1,35 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Hero.module.css';
 import { Link } from 'react-router-dom';
-import image1 from './assets/image1.jpg'; 
-import image2 from './assets/image2.jpg';
-import image3 from './assets/image3.jpg';
-import image4 from './assets/image4.jpg';
-import image5 from './assets/image5.jpg';
+import video1 from './assets/video1.mp4'; 
+import video2 from './assets/video2.mp4';
+import video3 from './assets/video3.mp4';
+import video4 from './assets/video4.mp4';
+import video5 from './assets/video5.mp4';
 
 const content = [
     {
-        image: image1,
+        video: video1,
         title: "Secure Your Future with MassMutual",
         description: "We offer financial planning and life insurance to help you protect what matters most."
     },
     {
-        image: image2,
+        video: video2,
         title: "Planning for Tomorrow, Today",
         description: "Build a solid financial foundation with personalized plans that align with your goals."
     },
     {
-        image: image3,
+        video: video3,
         title: "Expert Guidance Every Step of the Way",
         description: "Our team of experts will guide you through your financial journey, ensuring a prosperous future."
     },
     {
-        image: image4,
+        video: video4,
         title: "Financial Solutions Tailored for You",
         description: "No matter your needs, we have plans that provide the protection and flexibility you require."
     },
     {
-        image: image5,
+        video: video5,
         title: "Join Millions Securing Their Future",
         description: "MassMutual is committed to helping individuals and families achieve financial stability and success."
     }
@@ -42,25 +42,38 @@ const Hero = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentContent((prevContent) => (prevContent + 1) % content.length);
-        }, 5000);
+        }, 7000);
         return () => clearInterval(interval); // Clean up the interval on component unmount
     }, []);
 
     return (
         <section className={styles.hero}>
-            {/* Background image carousel */}
-            <div className={styles.imageContainer}>
-                <img src={content[currentContent].image} alt="Hero background" className={styles.image} />
+            {/* Background video carousel */}
+            <div className={styles.videoContainer}>
+                {content.map((item, index) => (
+                    <video 
+                        key={index}
+                        src={item.video} 
+                        autoPlay 
+                        loop 
+                        muted 
+                        className={`${styles.video} ${currentContent === index ? styles.visible : styles.hidden}`} 
+                        preload="auto"
+                        onEnded={() => setCurrentContent((prevContent) => (prevContent + 1) % content.length)} // Move to the next video when the current one ends
+                    />
+                ))}
             </div>
             
             {/* Hero content */}
             <div className={styles.heroContent}>
-                <h2>{content[currentContent].title}</h2>
-                <h1>Plan today. Prosper tomorrow.</h1>
-                <p>{content[currentContent].description}</p>
-                <Link to="/Login"> 
-                    <button className={styles.ctaButton}>Get Started ➔</button>
-                </Link>
+                <div className={styles.innerheroContent}>
+                    <h2>{content[currentContent].title}</h2>
+                    <h1>Plan today. Prosper tomorrow.</h1>
+                    <p>{content[currentContent].description}</p>
+                    <Link to="/Login"> 
+                        <button className={styles.ctaButton}>Get Started ➔</button>
+                    </Link>
+                </div>
             </div>
         </section>
     );

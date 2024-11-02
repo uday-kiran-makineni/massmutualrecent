@@ -1,7 +1,8 @@
 import React from 'react';
 import './UpdatedProducts.css'; // Updated CSS file for styling
 import Navbar from '../components/Navbar';
-import UserFooter from '../../User_db/UserFooter';
+import AgentFooter from './AgentFooter';
+
 
 // Reusable Card Component
 const InsuranceCard = ({ title, points }) => {
@@ -70,7 +71,7 @@ const Products = () => {
           />
         </div>
       </div>
-      <UserFooter />
+      <AgentFooter />
     </>
   );
 };

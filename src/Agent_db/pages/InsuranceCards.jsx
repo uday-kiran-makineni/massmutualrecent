@@ -2,8 +2,7 @@ import React from 'react';
 import styles from '../styles/InsuranceCards.module.css';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
-import Footer from '../../landing/Footer';
-import AdminFooter from '../components/AdminFooter';
+import Nagentfooter from './Nagentfooter';
 
 const InsuranceCards = () => {
   const cards1 = [
@@ -59,14 +58,14 @@ const InsuranceCards = () => {
         </div>
         <div className={styles.card}>
           <img src="https://res.cloudinary.com/do6twjc6g/image/upload/v1729148331/Vehicle-Insurance_kmq6h7.jpg"  alt="Vehicle Insurance" className={styles.cardImage} />
-          <h3>Vehicle Insurance</h3>
+          <h3>Motor Insurance</h3>
           <p>Protect your vehicle against accidents and theft.</p>
           <Link to="/motor-policy">
             <button className={styles.learnMore}>Choose</button>
           </Link>
         </div>
     </div>
-    <AdminFooter />
+    <Nagentfooter />
     </>
   );
 };

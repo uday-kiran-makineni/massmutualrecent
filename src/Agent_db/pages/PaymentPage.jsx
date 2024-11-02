@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Navbar from '../components/Navbar';
+import Nagentfooter from './Nagentfooter';
+
 
 const PaymentPage = () => {
     const [policyNumber, setPolicyNumber] = useState('');
@@ -70,6 +73,8 @@ const PaymentPage = () => {
     };
 
     return (
+        <>
+        <Navbar/>
         <div style={styles.container}>
             <h1>Payment Page</h1>
             <form onSubmit={handlePolicyFetch} style={styles.form}>
@@ -92,6 +97,8 @@ const PaymentPage = () => {
             {error && <p style={styles.error}>{error}</p>}
             {renderPolicyDetails()}
         </div>
+<Nagentfooter/>
+</>
     );
 };
 
@@ -103,6 +110,7 @@ const styles = {
         alignItems: 'center',
         padding: '20px',
         fontFamily: 'Arial, sans-serif',
+        marginTop: '60px',
     },
     form: {
         display: 'flex',
@@ -123,6 +131,9 @@ const styles = {
         borderRadius: '5px',
         border: '1px solid #ccc',
         width: '100%',
+    },
+    h1:{
+        marginBottom:'30px',
     },
     button: {
         padding: '10px',

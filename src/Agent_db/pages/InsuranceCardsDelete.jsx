@@ -3,7 +3,7 @@ import styles from '../styles/InsuranceCards.module.css';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
 import Footer from '../../landing/Footer';
-import AdminFooter from '../components/AdminFooter';
+import Nagentfooter from './Nagentfooter';
 
 const InsuranceCards = () => {
   const cards1 = [
@@ -66,7 +66,7 @@ const InsuranceCards = () => {
           </Link>
         </div>
     </div>
-    <AdminFooter />
+    <Nagentfooter />
     </>
   );
 };

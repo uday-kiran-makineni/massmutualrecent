@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
 import styles from '../styles/AddPolicy.module.css';
+import Navbar from '../components/Navbar';
+import AgentFooter from './AgentFooter';
 
 const DownloadTravelInsuranceForm = () => {
   const [formData] = useState({
@@ -97,6 +99,8 @@ const DownloadTravelInsuranceForm = () => {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className={styles.Formbg}>
       <h1 className={styles.title}>Travel Insurance Policy Form</h1>
       <h3>Preview Only - Downloadable</h3>
@@ -279,6 +283,8 @@ const DownloadTravelInsuranceForm = () => {
         </button>
       </form>
     </div>
+    <AgentFooter/>
+    </>
   );
 };
 

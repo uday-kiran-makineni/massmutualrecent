@@ -3,8 +3,8 @@ import axios from 'axios';
 import styles from './PolicySection.module.css';
 import CryptoJS from 'crypto-js';
 import Navbar from '../components/Navbar';
-import AdminFooter from '../components/AdminFooter';
-import UserFooter from '../../User_db/UserFooter';
+import AgentFooter from './AgentFooter';
+import { Link } from 'react-router-dom';
 
 
 const secretKey = 'your-secret-key';
@@ -105,8 +105,9 @@ const InactiveExpiredPolicies = () => {
                 <span>Status: {policy.policyStatus}</span>
               </div>
               <div className={styles.policyActions}>
-                <button className={styles.actionBtn}>Update</button>
-                <button className={styles.actionBtn}>Claim</button>
+              <Link to="/payment-page">
+              <button className={styles.actionBtn}>Renew Now</button>
+              </Link>
               </div>
             </div>
           ))
@@ -127,8 +128,9 @@ const InactiveExpiredPolicies = () => {
                 <span>Status: {policy.policyStatus}</span>
               </div>
               <div className={styles.policyActions}>
-                <button className={styles.actionBtn}>Update</button>
-                <button className={styles.actionBtn}>Claim</button>
+              <Link to="/payment-page">
+              <button className={styles.actionBtn}>Renew Now</button>
+              </Link>
               </div>
             </div>
           ))
@@ -149,8 +151,9 @@ const InactiveExpiredPolicies = () => {
                 <span>Status: {policy.policyStatus}</span>
               </div>
               <div className={styles.policyActions}>
-                <button className={styles.actionBtn}>Update</button>
-                <button className={styles.actionBtn}>Claim</button>
+              <Link to="/payment-page">
+              <button className={styles.actionBtn}>Renew Now</button>
+              </Link>
               </div>
             </div>
           ))
@@ -170,8 +173,9 @@ const InactiveExpiredPolicies = () => {
                 <span>Status: {policy.policyStatus}</span>
               </div>
               <div className={styles.policyActions}>
-                <button className={styles.actionBtn}>Update</button>
-                <button className={styles.actionBtn}>Claim</button>
+              <Link to="/payment-page">
+              <button className={styles.actionBtn}>Renew Now</button>
+              </Link>
               </div>
             </div>
           ))
@@ -179,7 +183,7 @@ const InactiveExpiredPolicies = () => {
           <p>No inactive or expired travel insurance policies found.</p>
         )}
       </section>
-      <UserFooter/>
+     <AgentFooter/>
     </>
   );
 };

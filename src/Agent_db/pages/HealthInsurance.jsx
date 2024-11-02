@@ -1,297 +1,295 @@
-//HealthInsurance.jsx
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import styles from '../styles/AddPolicy.module.css';
+import React, { useState } from 'react';
+import axios from 'axios';
+import './HealthInsuranceForm.css'; // Make sure to link your CSS file
+import Navbar from '../components/Navbar';
 
-function HealthInsurance() {
-  const [formData, setFormData] = useState({
-    policyNumber: "",
-    agentId: "",
-    agentEmail: "",
-    userId: "",
-    userEmail: "",
-    mobileNumber: "",
-    startDate: "",
-    endDate: "",
-    premiumAmount: "",
-    coverageAmount: "",
-    paymentFrequency: "",
-    policyStatus: "",
-    beneficiaryDetails: "",
-    claimLimit: "",
-    policyType: "Individual",
-    termsAndConditions: "",
-    preExistingDiseases: ""
-  });
-
-  const [errors, setErrors] = useState({});
-
-  useEffect(() => {
-    const storedAgentId = localStorage.getItem('username');
-    if (storedAgentId) {
-      setFormData(prevState => ({
-        ...prevState,
-        agentId: storedAgentId
-      }));
-    } else {
-      console.error('AgentId not found in local storage');
-      // You might want to handle this case (e.g., redirect to login)
-    }
-  }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-    // Clear the error for this field as the user types
-    setErrors(prevErrors => ({
-      ...prevErrors,
-      [name]: ''
-    }));
-  };
-
-  const validateForm = () => {
-    let newErrors = {};
-
-    // Check for empty required fields
-    Object.keys(formData).forEach(key => {
-      if (formData[key] === "" && key !== "agentEmail" && key !== "policyStatus" && key !== "preExistingDiseases") {
-        newErrors[key] = "This field is required";
-      }
+const HealthInsuranceForm = () => {
+    const [formData, setFormData] = useState({
+        policyNumber: '',
+        policyType: 'Individual',
+        coverageAmount: '',
+        startDate: '',
+        endDate: '',
+        userId: '',
+        userEmail: '',
+        mobileNumber: '',
+        beneficiaryDetails: '',
+        preExistingDiseases: '',
+        premiumAmount: '',
+        paymentFrequency: 'Monthly',
+        claimLimit: '',
+        coverageDetails: ''
     });
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (formData.userEmail && !emailRegex.test(formData.userEmail)) {
-      newErrors.userEmail = "Invalid email format";
-    }
+    const [message, setMessage] = useState('');
+    const [errors, setErrors] = useState({}); // Error state for validation
 
-    // Validate mobile number (assuming 10 digits)
-    const mobileRegex = /^\d{10}$/;
-    if (formData.mobileNumber && !mobileRegex.test(formData.mobileNumber)) {
-      newErrors.mobileNumber = "Invalid mobile number format (10 digits required)";
-    }
+    // Handle form field changes
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setErrors({ ...errors, [e.target.name]: '' }); // Clear error when user modifies input
+    };
 
-    // Validate amounts are positive numbers
-    ['premiumAmount', 'coverageAmount', 'claimLimit'].forEach(field => {
-      if (formData[field] && (isNaN(formData[field]) || Number(formData[field]) <= 0)) {
-        newErrors[field] = "Must be a positive number";
-      }
-    });
+    // Validate form inputs
+    const validateForm = () => {
+        const newErrors = {};
+        if (!formData.policyNumber) newErrors.policyNumber = 'Policy Number is required.';
+        if (!formData.coverageAmount) newErrors.coverageAmount = 'Coverage Amount is required.';
+        if (!formData.startDate) newErrors.startDate = 'Start Date is required.';
+        if (!formData.endDate) newErrors.endDate = 'End Date is required.';
+        if (!formData.userId) newErrors.userId = 'User ID is required.';
+        if (!formData.userEmail) newErrors.userEmail = 'User Email is required.';
+        if (!formData.mobileNumber) newErrors.mobileNumber = 'Mobile Number is required.';
+        if (!formData.beneficiaryDetails) newErrors.beneficiaryDetails = 'Beneficiary Details are required.';
+        if (!formData.premiumAmount) newErrors.premiumAmount = 'Premium Amount is required.';
+        if (!formData.claimLimit) newErrors.claimLimit = 'Claim Limit is required.';
+        if (!formData.coverageDetails) newErrors.coverageDetails = 'Coverage Details are required.';
 
-    // Validate dates
-    const today = new Date();
-    const startDate = new Date(formData.startDate);
-    const endDate = new Date(formData.endDate);
+        return newErrors;
+    };
 
-    if (startDate < today) {
-      newErrors.startDate = "Start date cannot be in the past";
-    }
-    if (endDate <= startDate) {
-      newErrors.endDate = "End date must be after start date";
-    }
+    // Handle form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formErrors = validateForm();
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+        if (Object.keys(formErrors).length > 0) {
+            setErrors(formErrors); // Set errors to state
+            return;
+        }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      try {
-        const response = await axios.post('http://localhost:8081/api/healthpolicies', formData);
-        console.log('Form submitted successfully:', response.data);
-        // Handle successful submission (e.g., show success message, reset form, etc.)
-      } catch (error) {
-        console.error('Error submitting form:', error);
-        // Handle submission error (e.g., show error message)
-      }
-    } else {
-      console.log("Form has errors. Please correct them.");
-    }
-  };
+        try {
+            const response = await axios.post(
+                'http://localhost:8081/api/healthpolicies',
+                formData,
+                {
+                    headers: {
+                        'Authorization': 'Basic ' + btoa('user:user'), // Basic Auth
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
+            setMessage('Policy created successfully!');
+            setFormData({ // Reset form on success
+                policyNumber: '',
+                policyType: 'Individual',
+                coverageAmount: '',
+                startDate: '',
+                endDate: '',
+                userId: '',
+                userEmail: '',
+                mobileNumber: '',
+                beneficiaryDetails: '',
+                preExistingDiseases: '',
+                premiumAmount: '',
+                paymentFrequency: 'Monthly',
+                claimLimit: '',
+                coverageDetails: ''
+            });
+        } catch (error) {
+            setMessage('Error creating policy. Please try again.');
+            console.error('Error:', error.response || error.message);
+        }
+    };
 
-  return (
-    <div className={styles.Formbg}>
-      <h1 className={styles.title}>Health Insurance Policy Form</h1>
-      <form onSubmit={handleSubmit}>
-        <h3>Policy Information</h3><br />
-        <label>Policy Number<span style={{ color: 'red' }}>*</span></label>
-        <input 
-          type="text" 
-          name="policyNumber" 
-          value={formData.policyNumber} 
-          onChange={handleChange} 
-          placeholder="Policy Number" 
-        />
-        {errors.policyNumber && <span style={{ color: 'red' }}>{errors.policyNumber}</span>}
-        <br />
+    return (
+        <>
+        <Navbar/>
+        <div className="form-container">
+            <h2 className="form-heading">Health Insurance Policy Form</h2>
+            {message && <p className="form-message">{message}</p>}
+            <form onSubmit={handleSubmit} className="policy-form">
+                
+                <div className="form-group">
+                    <label>Policy Number*</label>
+                    <input
+                        type="text"
+                        name="policyNumber"
+                        value={formData.policyNumber}
+                        onChange={handleChange}
+                        className="form-input"
+                        required
+                    />
+                    {errors.policyNumber && <p className="error-message">{errors.policyNumber}</p>}
+                </div>
 
-        <label>Policy Type<span style={{ color: 'red' }}>*</span></label>
-        <select 
-          name="policyType" 
-          value={formData.policyType} 
-          onChange={handleChange}
-        >
-          <option value="Individual">Individual</option>
-          <option value="Family">Family</option>
-          <option value="Critical Illness">Critical Illness</option>
-        </select>
-        {errors.policyType && <span style={{ color: 'red' }}>{errors.policyType}</span>}
-        <br />
+                <div className="form-group">
+                    <label>Policy Type*</label>
+                    <select
+                        name="policyType"
+                        value={formData.policyType}
+                        onChange={handleChange}
+                        className="form-input"
+                    >
+                        <option value="Individual">Individual</option>
+                        <option value="Family">Family</option>
+                        <option value="Group">Group</option>
+                    </select>
+                </div>
 
-        <label>Coverage Amount<span style={{ color: 'red' }}>*</span></label>
-        <input 
-          type="text" 
-          name="coverageAmount" 
-          value={formData.coverageAmount} 
-          onChange={handleChange} 
-          placeholder="Coverage Amount" 
-        />
-        {errors.coverageAmount && <span style={{ color: 'red' }}>{errors.coverageAmount}</span>}
-        <br />
+                <div className="form-group">
+                    <label>Coverage Amount*</label>
+                    <input
+                        type="number"
+                        name="coverageAmount"
+                        value={formData.coverageAmount}
+                        onChange={handleChange}
+                        className="form-input"
+                        required
+                    />
+                    {errors.coverageAmount && <p className="error-message">{errors.coverageAmount}</p>}
+                </div>
 
-        <label>Start Date<span style={{ color: 'red' }}>*</span></label>
-        <input 
-          type="date" 
-          name="startDate" 
-          value={formData.startDate} 
-          onChange={handleChange} 
-        />
-        {errors.startDate && <span style={{ color: 'red' }}>{errors.startDate}</span>}
-        <br />
+                <div className="form-group">
+                    <label>Start Date*</label>
+                    <input
+                        type="date"
+                        name="startDate"
+                        value={formData.startDate}
+                        onChange={handleChange}
+                        className="form-input"
+                        required
+                    />
+                    {errors.startDate && <p className="error-message">{errors.startDate}</p>}
+                </div>
 
-        <label>End Date<span style={{ color: 'red' }}>*</span></label>
-        <input 
-          type="date" 
-          name="endDate" 
-          value={formData.endDate} 
-          onChange={handleChange} 
-        />
-        {errors.endDate && <span style={{ color: 'red' }}>{errors.endDate}</span>}
-        <br /><hr />
+                <div className="form-group">
+                    <label>End Date*</label>
+                    <input
+                        type="date"
+                        name="endDate"
+                        value={formData.endDate}
+                        onChange={handleChange}
+                        className="form-input"
+                        required
+                    />
+                    {errors.endDate && <p className="error-message">{errors.endDate}</p>}
+                </div>
 
-        <h3>Policyholder Details</h3><br />
-        <label>User ID<span style={{ color: 'red' }}>*</span></label>
-        <input 
-          type="text" 
-          name="userId" 
-          value={formData.userId} 
-          onChange={handleChange} 
-          placeholder="User ID" 
-        />
-        {errors.userId && <span style={{ color: 'red' }}>{errors.userId}</span>}
-        <br />
+                <h3 className="form-subheading">Policyholder Details</h3>
 
-        <label>User Email<span style={{ color: 'red' }}>*</span></label>
-        <input 
-          type="email" 
-          name="userEmail" 
-          value={formData.userEmail} 
-          onChange={handleChange} 
-          placeholder="User Email" 
-        />
-        {errors.userEmail && <span style={{ color: 'red' }}>{errors.userEmail}</span>}
-        <br />
+                <div className="form-group">
+                    <label>User ID*</label>
+                    <input
+                        type="text"
+                        name="userId"
+                        value={formData.userId}
+                        onChange={handleChange}
+                        className="form-input"
+                        required
+                    />
+                    {errors.userId && <p className="error-message">{errors.userId}</p>}
+                </div>
 
-        <label>Mobile Number<span style={{ color: 'red' }}>*</span></label>
-        <input 
-          type="text" 
-          name="mobileNumber" 
-          value={formData.mobileNumber} 
-          onChange={handleChange} 
-          placeholder="Mobile Number" 
-        />
-        {errors.mobileNumber && <span style={{ color: 'red' }}>{errors.mobileNumber}</span>}
-        <br />
+                <div className="form-group">
+                    <label>User Email*</label>
+                    <input
+                        type="email"
+                        name="userEmail"
+                        value={formData.userEmail}
+                        onChange={handleChange}
+                        className="form-input"
+                        required
+                    />
+                    {errors.userEmail && <p className="error-message">{errors.userEmail}</p>}
+                </div>
 
-        <label>Beneficiary Details<span style={{ color: 'red' }}>*</span></label>
-        <input 
-          type="text" 
-          name="beneficiaryDetails" 
-          value={formData.beneficiaryDetails} 
-          onChange={handleChange} 
-          placeholder="Beneficiary Name, Relation" 
-        />
-        {errors.beneficiaryDetails && <span style={{ color: 'red' }}>{errors.beneficiaryDetails}</span>}
-        <br />
+                <div className="form-group">
+                    <label>Mobile Number*</label>
+                    <input
+                        type="tel"
+                        name="mobileNumber"
+                        value={formData.mobileNumber}
+                        onChange={handleChange}
+                        className="form-input"
+                        required
+                    />
+                    {errors.mobileNumber && <p className="error-message">{errors.mobileNumber}</p>}
+                </div>
 
-        <label>Pre-Existing Diseases</label>
-        <input 
-          type="text" 
-          name="preExistingDiseases" 
-          value={formData.preExistingDiseases} 
-          onChange={handleChange} 
-          placeholder="Pre-Existing Diseases (if any)" 
-        />
-        {errors.preExistingDiseases && <span style={{ color: 'red' }}>{errors.preExistingDiseases}</span>}
-        <br /><hr />
+                <div className="form-group">
+                    <label>Beneficiary Details*</label>
+                    <input
+                        type="text"
+                        name="beneficiaryDetails"
+                        value={formData.beneficiaryDetails}
+                        onChange={handleChange}
+                        className="form-input"
+                        required
+                    />
+                    {errors.beneficiaryDetails && <p className="error-message">{errors.beneficiaryDetails}</p>}
+                </div>
 
-        <h3>Premium Information</h3><br />
-        <label>Premium Amount<span style={{ color: 'red' }}>*</span></label>
-        <input 
-          type="text" 
-          name="premiumAmount" 
-          value={formData.premiumAmount} 
-          onChange={handleChange} 
-          placeholder="Premium Amount" 
-        />
-        {errors.premiumAmount && <span style={{ color: 'red' }}>{errors.premiumAmount}</span>}
-        <br />
+                <div className="form-group">
+                    <label>Pre-Existing Diseases</label>
+                    <input
+                        type="text"
+                        name="preExistingDiseases"
+                        value={formData.preExistingDiseases}
+                        onChange={handleChange}
+                        className="form-input"
+                    />
+                </div>
 
-        <label>Payment Frequency<span style={{ color: 'red' }}>*</span></label>
-        <input 
-          type="radio" 
-          name="paymentFrequency" 
-          value="Monthly" 
-          checked={formData.paymentFrequency === 'Monthly'} 
-          onChange={handleChange} 
-        /> Monthly
-        <input 
-          type="radio" 
-          name="paymentFrequency" 
-          value="Quarterly" 
-          checked={formData.paymentFrequency === 'Quarterly'} 
-          onChange={handleChange} 
-        /> Quarterly
-        <input 
-          type="radio" 
-          name="paymentFrequency" 
-          value="Annually" 
-          checked={formData.paymentFrequency === 'Annually'} 
-          onChange={handleChange} 
-        /> Annually
-        {errors.paymentFrequency && <span style={{ color: 'red' }}>{errors.paymentFrequency}</span>}
-        <br />
+                <h3 className="form-subheading">Premium Information</h3>
 
-        <label>Claim Limit<span style={{ color: 'red' }}>*</span></label>
-        <input 
-          type="text" 
-          name="claimLimit" 
-          value={formData.claimLimit} 
-          onChange={handleChange} 
-          placeholder="Claim Limit" 
-        />
-        {errors.claimLimit && <span style={{ color: 'red' }}>{errors.claimLimit}</span>}
-        <br /><hr />
+                <div className="form-group">
+                    <label>Premium Amount*</label>
+                    <input
+                        type="number"
+                        name="premiumAmount"
+                        value={formData.premiumAmount}
+                        onChange={handleChange}
+                        className="form-input"
+                        required
+                    />
+                    {errors.premiumAmount && <p className="error-message">{errors.premiumAmount}</p>}
+                </div>
 
-        <h3>Terms & Conditions</h3><br />
-        <label>Coverage Details<span style={{ color: 'red' }}>*</span></label>
-        <textarea 
-          name="termsAndConditions" 
-          value={formData.termsAndConditions} 
-          onChange={handleChange} 
-          placeholder="Terms and Conditions" 
-        />
-        {errors.termsAndConditions && <span style={{ color: 'red' }}>{errors.termsAndConditions}</span>}
-        <br />
+                <div className="form-group">
+                    <label>Payment Frequency*</label>
+                    <select
+                        name="paymentFrequency"
+                        value={formData.paymentFrequency}
+                        onChange={handleChange}
+                        className="form-input"
+                    >
+                        <option value="Monthly">Monthly</option>
+                        <option value="Quarterly">Quarterly</option>
+                        <option value="Annually">Annually</option>
+                    </select>
+                </div>
 
-        <input type="submit" value="Submit" id="submit" />
-      </form>
-    </div>
-  );
-}
+                <div className="form-group">
+                    <label>Claim Limit*</label>
+                    <input
+                        type="number"
+                        name="claimLimit"
+                        value={formData.claimLimit}
+                        onChange={handleChange}
+                        className="form-input"
+                        required
+                    />
+                    {errors.claimLimit && <p className="error-message">{errors.claimLimit}</p>}
+                </div>
 
-export default HealthInsurance;
+                <div className="form-group">
+                    <label>Coverage Details*</label>
+                    <textarea
+                        name="coverageDetails"
+                        value={formData.coverageDetails}
+                        onChange={handleChange}
+                        className="form-input"
+                        required
+                    ></textarea>
+                    {errors.coverageDetails && <p className="error-message">{errors.coverageDetails}</p>}
+                </div>
+
+                <button type="submit" className="form-submit">Submit</button>
+            </form>
+        </div>
+        </>
+    );
+};
+
+export default HealthInsuranceForm;

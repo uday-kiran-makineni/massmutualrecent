@@ -3,14 +3,29 @@
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 20px;
-    border: 1px solid var(--bp-color-primary-light-pressed);
+    /* border: 10px solid var(--bp-color-primary-light-pressed); */
   }
-  
+  .Claimcontainer{
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    margin: 70px 0px;
+    /* border: 2px solid #002451; */
+  }
+  .ClaimcontainerP{
+padding-left: 65px;
+  }
+  .box{
+    margin:0 30px;
+  }
   .sectionTitle {
     text-align: center;
     font-size: 1.6rem;
     margin-bottom: 20px;
     color: var(--bp-color-primary-default); /* Primary color for title */
+  }
+  .ClaimcontainerH{
+    text-align: center;
   }
   
   .claimCard {
@@ -46,12 +61,10 @@
     background-color: var(--bp-color-primary-pressed); /* Pressed state color */
   }
   /* ClaimsSection.module.css */
-  .container {
-    margin: 20px; /* Add margin around the table */
-  }
+
   
   .claims-table {
-    width: 100vw; /* Make the table full width of the viewport */
+    width: 100vw;
     max-width: 100%; /* Prevent the table from exceeding the viewport */
     border-collapse: collapse; /* Remove space between borders */
     background-color: #ffffff; /* Set a white background for the table */
@@ -60,9 +73,10 @@
   
   .claims-table th,
   .claims-table td {
-    padding: 15px; /* Add padding to cells for better readability */
+    /* padding: 15px; */
     text-align: left; /* Align text to the left */
-    border: 1px solid #dee2e6; /* Default border color for cells */
+    /* border: 1px solid #dee2e6 */
+
   }
   
   .claims-table th {
@@ -71,6 +85,7 @@
   
   .claims-table tr {
     transition: border-color 0.3s; /* Add transition for border color changes */
+
   }
   
   /* Add responsive design for smaller screens */
@@ -85,8 +100,9 @@
 /* Table container */
 .container {
     width: 100%;
-    margin: 20px auto;
+    /* margin: 20px auto; */
     font-family: Arial, sans-serif;
+    
 }
 
 /* Style for the claims table */
@@ -94,6 +110,7 @@
     width: 100%;
     border-collapse: collapse; /* Ensure the borders don't have gaps */
     margin-top: 10px;
+
 }
 
 /* Table headers */
@@ -107,7 +124,7 @@
 /* Table cells */
 .claims-table td {
     border: 1px solid #ccc; /* Add borders around all cells */
-    padding: 10px;
+    /* padding: 10px; */
     text-align: left;
 }
 
@@ -118,7 +135,7 @@
 
 /* Adjust the border color based on claim status */
 .claims-table tr {
-    border-left: 5px solid transparent; /* Custom left border for status */
+    border-left: 5px solid transparent; 
 }
 
 /* Styles for Add Claim button */

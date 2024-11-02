@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
-import './ClaimSection.module.css'; // Import a CSS file for additional styles
+import styles from'./ClaimSection.module.css'; // Import a CSS file for additional styles
 import Navbar from '../components/Navbar';
-import AdminFooter from '../components/AdminFooter';
+// import AdminFooter from '../components/AdminFooter';
+import AgentFooter from './Nagentfooter';
 
 const ClaimsSection = () => {
     const [claims, setClaims] = useState([]);
@@ -92,33 +93,15 @@ const ClaimsSection = () => {
     return (
         <>
         <Navbar/>
-        <div className="container">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                <h2>Your Claims</h2>
-                <button 
-                    style={{
-                        backgroundColor: '#007bff', 
-                        color: 'white', 
-                        padding: '10px 20px', 
-                        border: 'none', 
-                        borderRadius: '5px', 
-                        cursor: 'pointer', 
-                        fontSize: '16px',
-                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                        transition: 'background-color 0.3s ease'
-                    }}
-                    onClick={() => console.log('Add Claim clicked')}
-                    onMouseOver={e => e.target.style.backgroundColor = '#0056b3'}
-                    onMouseOut={e => e.target.style.backgroundColor = '#007bff'}
-                >
-                    Add Claim
-                </button>
+        <div className={styles.Claimcontainer}>
+            <div>
+                <h2 className={styles.ClaimcontainerH}>Your Claims</h2>
             </div>
 
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {claims.length > 0 ? (
                 <>
-                    <p>Total Claims: {claims.length}</p>
+                    <p className={styles.ClaimcontainerP}>Total Claims: {claims.length}</p>
 
                     <table className="claims-table">
                         <thead>
@@ -142,10 +125,10 @@ const ClaimsSection = () => {
                     </table>
                 </>
             ) : (
-                !error && <p>No claims found.</p>
+                !error && <p className={styles.box}>No claims found.</p>
             )}
         </div>
-        <AdminFooter/>
+        <AgentFooter/>
         </>
     );
 };

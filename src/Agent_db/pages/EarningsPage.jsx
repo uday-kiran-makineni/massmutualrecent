@@ -3,8 +3,8 @@ import axios from 'axios';
 import styles from './PolicySection.module.css';
 import CryptoJS from 'crypto-js';
 import Navbar from '../components/Navbar';
-import AdminFooter from '../components/AdminFooter';
-import UserFooter from '../../User_db/UserFooter';
+import AgentFooter from './AgentFooter';
+import Nagentfooter from './Nagentfooter';
 
 const secretKey = 'your-secret-key';
 
@@ -152,7 +152,9 @@ const EarningsSection = () => {
     <>
       <Navbar />
       <section className={styles.policySection}>
+        <div className={styles.btns}>
         <h2 className={styles.totalPolicies}>Total Policies: {commissions.length}</h2>
+        </div>
 
         {/* Tab Navigation */}
         <div className={styles.tabContainer}>
@@ -202,15 +204,16 @@ const EarningsSection = () => {
             ) : (
               <p>No commissions found.</p>
             )}
+            <AgentFooter/>
           </>
         ) : (
           <>
             <h3 className={styles.sectionTitle}>Incentive Table</h3>
             {renderIncentives()}
+            <Nagentfooter/>
           </>
         )}
       </section>
-      <UserFooter />
     </>
   );
 };

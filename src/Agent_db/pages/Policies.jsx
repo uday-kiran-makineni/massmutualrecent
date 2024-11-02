@@ -3,9 +3,10 @@ import axios from 'axios';
 import styles from './PolicySection.module.css';
 import CryptoJS from 'crypto-js';
 import Navbar from '../components/Navbar';
-import AdminFooter from '../components/AdminFooter';
-import UserFooter from '../../User_db/UserFooter';
-
+import AgentFooter from './AgentFooter';
+// import Nagentfooter from './Nagentfooter';
+import { Link } from 'react-router-dom';
+import InsuranceGraphs from './InsuranceGraphs';
 
 const secretKey = 'your-secret-key';
 
@@ -121,8 +122,9 @@ const PolicySection = () => {
               <span>Claim Limit: ${policy.claimLimit}</span>
             </div>
             <div className={styles.policyActions}>
+            <Link to="/health-policy-update">
             <button className={styles.actionBtn}>Update</button>
-              <button className={styles.actionBtn}>Claim</button>
+            </Link>
             </div>
           </div>
         ))
@@ -146,8 +148,9 @@ const PolicySection = () => {
               <span>Terms & Conditions: {policy.termsAndConditions}</span>
             </div>
             <div className={styles.policyActions}>
+            <Link to="/life-policy-update">
             <button className={styles.actionBtn}>Update</button>
-            <button className={styles.actionBtn}>Claim</button>
+            </Link>
             </div>
           </div>
         ))
@@ -172,8 +175,9 @@ const PolicySection = () => {
               <span>Terms & Conditions: {policy.termsAndConditions}</span>
             </div>
             <div className={styles.policyActions}>
+            <Link to="/motor-policy-update">
             <button className={styles.actionBtn}>Update</button>
-            <button className={styles.actionBtn}>Claim</button>
+            </Link>
             </div>
           </div>
         ))
@@ -196,16 +200,19 @@ const PolicySection = () => {
               <span>Terms & Conditions: {policy.termsAndConditions}</span>
             </div>
             <div className={styles.policyActions}>
+            <Link to="/travel-policy-update">
             <button className={styles.actionBtn}>Update</button>
-            <button className={styles.actionBtn}>Claim</button>
+            </Link>
             </div>
           </div>
         ))
       ) : (
         <p>No travel insurance policies found.</p>
       )}
+
+      <InsuranceGraphs/>
     </section>
-    <UserFooter/>
+    <AgentFooter/>
     </>
   );
 };

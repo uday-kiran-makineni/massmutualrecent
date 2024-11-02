@@ -1,15 +1,21 @@
 .hero {
     position: relative;
-    height: 100vh;
+    height: 100vh; /* Full viewport height */
     display: flex;
     align-items: center;
     justify-content: flex-start; /* Align content to the left */
     text-align: left;
-    color: white;
     overflow: hidden;
+
+    background: radial-gradient(
+        circle at bottom left,
+        rgba(0, 0, 0, 0.368) 50%,
+        rgba(0, 0, 0, 0) 100%
+    ); /* Fallback for older browsers */
+    margin-top: 50px;
 }
 
-.imageContainer {
+.videoContainer {
     position: absolute;
     top: 0;
     left: 0;
@@ -19,38 +25,52 @@
     overflow: hidden;
 }
 
-.image {
+.video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    filter:brightness(70%);
-}
-
-.imageContainer::before {
-    content: '';
+    object-fit: cover; /* Ensures the video fills the container */
+    filter: brightness(70%); /* Dims the video for better text visibility */
+    transform: scaleX(-1); /* Mirror the video horizontally */
     position: absolute;
     top: 0;
     left: 0;
-    width: 50%; /* Adjust width for how much of the image should be blurred */
-    height: 100%;
-    z-index: 1;
+    transition: opacity 0.5s ease-in-out; /* Smooth transition for opacity */
 }
 
+.hidden {
+    opacity: 0; /* Hidden state */
+    pointer-events: none; /* Prevent interactions */
+}
+
+.visible {
+    opacity: 1; /* Visible state */
+}
+
+/* Hero content styling */
 .heroContent {
-    z-index: -1;
+    z-index: 10;
     max-width: 600px;
-    background-color: rgba(255, 255, 255, 0.932); /* Translucent black background for contrast */
+    background-color: rgba(96, 95, 95, 0.055); /* Adjusted for more transparency */
     padding: 20px;
     border-radius: 10px;
     margin-left: 1%; /* Move the content slightly away from the left */
+    margin-top: 260px;
+    color: white;
+
+    /* Adding the glass effect */
+    backdrop-filter: blur(3px); /* Adjust the blur radius for desired effect */
+    border: 1px solid rgba(255, 255, 255, 0.137); /* Subtle border for separation */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.096); /* Optional: shadow for depth */
 }
+
 .heroContent h2 {
-    color: rgb(0, 61, 140);
+    color: white;
 }
 
 .hero h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    color: white;
 }
 
 .hero h2 {
@@ -61,19 +81,22 @@
 .hero p {
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
+    color: white;
 }
 
 .ctaButton {
-    background-color: rgb(0, 46, 107);
+    background-color: transparent;
     color: white;
     padding: 0.8rem 2rem;
-    border: 4px solid blue;
+    border: 2px solid blue;
     border-radius: 30px;
     font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    opacity: 0.8;
 }
 
 .ctaButton:hover {
-    background-color: rgb(0, 61, 140);
+    background-color: white;
+    color: #002451;
 }

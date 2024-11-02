@@ -30,7 +30,7 @@ const MassMutualChatbot = () => {
         if (isLoggedIn) {
             switch (currentStep) {
                 case null:
-                    botResponse = "Please select your insurance type: Health, Life, Motor, Travel";
+                    botResponse = "Hello there!, Here are our insurances. Please select your insurance type: Health,Life, Motor, Travel";
                     setCurrentStep("insuranceType");
                     break;
 
@@ -150,7 +150,7 @@ const MassMutualChatbot = () => {
             Start Date: 01-Jan-2022<br>
             End Date: 01-Jan-2027<br>
             Agent ID: 12345<br>
-            Agent Email: updated_agent@example.com (Updated)<br>
+            Agent Email: john@gmail.com (Updated)<br>
             Mobile Number: 9876543210<br>
             Payment Frequency: Monthly<br>
             Sub Policy Type: Individual<br>
@@ -210,14 +210,14 @@ const MassMutualChatbot = () => {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
-        if (username.trim() && password.trim()) {
+        if (username.trim()==="user" && password.trim()==="user") {
             setIsLoggedIn(true);
             closeLoginPopup();
             addBotMessage("Login successful. You may now continue your query.");
             setCurrentStep(null); // Reset to start flow
             submitQuery(); // Start from the first step (insurance type)
         } else {
-            alert('Please enter both username and password.');
+            alert('Please enter valid username and password.');
         }
     };
 

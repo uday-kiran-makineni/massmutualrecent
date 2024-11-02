@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from '../styles/AddPolicy.module.css';
+import Navbar from '../components/Navbar';
 
 function MotorInsurance() {
   const [formData, setFormData] = useState({
@@ -133,6 +134,8 @@ function MotorInsurance() {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className={styles.Formbg}>
       <h1 className={styles.title}>Motor Insurance Policy Form</h1>
       {message && <div style={{ color: 'green' }}>{message}</div>}
@@ -309,6 +312,7 @@ function MotorInsurance() {
         <button type="submit">Create Policy</button>
       </form>
     </div>
+    </>
   );
 }
 

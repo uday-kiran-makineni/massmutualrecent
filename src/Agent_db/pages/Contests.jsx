@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './ContestsSection.module.css';
-
+import AgentFooter from './AgentFooter';
+import Navbar from '../components/Navbar';
 const ContestsSection = () => {
   const [activeTab, setActiveTab] = useState('ongoing');
   const [contests, setContests] = useState([]);
@@ -170,6 +171,8 @@ const ContestsSection = () => {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className={styles.contestsSection}>
       <h2 className={styles.contestsTitle}>Company Contests</h2>
 
@@ -200,6 +203,8 @@ const ContestsSection = () => {
         </div>
       )}
     </div>
+    <AgentFooter/>
+    </>
   );
 };
 

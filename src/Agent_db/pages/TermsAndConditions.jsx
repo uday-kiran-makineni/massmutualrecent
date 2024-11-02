@@ -2,7 +2,7 @@ import React from 'react';
 import { jsPDF } from 'jspdf'; // Import jsPDF
 import './TermsAndConditions.css'; // Import the CSS file
 import Navbar from '../components/Navbar';
-import UserFooter from '../../User_db/UserFooter';
+import AgentFooter from './AgentFooter';
 
 const TermsAndConditions = () => {
   const handleExportPDF = () => {
@@ -119,7 +119,7 @@ const TermsAndConditions = () => {
       </div>
       <button onClick={handleExportPDF} className="export-button">Export PDF</button>
     </div>
-    <UserFooter/>
+    <AgentFooter/>
     </>
   );
 };

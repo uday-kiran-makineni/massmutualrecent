@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './HealthInsuranceForm.css';
+import Navbar from '../components/Navbar';
 
 const HealthInsuranceForm = () => {
     const [policyNumber, setPolicyNumber] = useState('');
@@ -96,7 +97,9 @@ const HealthInsuranceForm = () => {
     };
 
     return (
-        <div className="form-container">
+        <>
+        <Navbar/>
+        <div className="form-container container">
             <h2 className="form-heading">Update Health Insurance Policy</h2>
             {message && <p className="form-message">{message}</p>}
             <form onSubmit={handleFetchPolicy} className="policy-fetch-form">
@@ -272,6 +275,7 @@ const HealthInsuranceForm = () => {
                 </form>
             )}
         </div>
+        </>
     );
 };
 

@@ -1,12 +1,12 @@
 
-import styles from './Footer.module.css';
+import './AgentFooter.css';
 
-const Footer = () => {
+const AgentFooter = () => {
     return (
-        <footer className={styles.footer}>
+        <footer className="footer">
             <p>&copy; 2024 Massachusetts Mutual Life Insurance Company (MassMutual®), Springfield, MA 01111-0001. All rights reserved.</p>
         </footer>
     );
 };
 
-export default Footer;
+export default AgentFooter;
