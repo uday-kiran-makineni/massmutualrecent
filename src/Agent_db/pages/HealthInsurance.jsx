@@ -26,7 +26,8 @@ const HealthInsuranceForm = () => {
 
     // Handle form field changes
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData({ ...formData, [e.target.name]: e.target.value, agentId: 0,
+            agentEmail: "company@gmail.com" });
         setErrors({ ...errors, [e.target.name]: '' }); // Clear error when user modifies input
     };
 

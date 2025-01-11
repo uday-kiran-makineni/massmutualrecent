@@ -35,15 +35,11 @@ function TravelInsurance() {
   useEffect(() => {
     const storedAgentId = localStorage.getItem('agentId');
     const storedAgentEmail = localStorage.getItem('agentEmail');
-    if (storedAgentId) {
-      setFormData(prevState => ({
-        ...prevState,
-        agentId: storedAgentId,
-        agentEmail: storedAgentEmail
-      }));
-    } else {
-      console.error('AgentId not found in local storage');
-    }
+    setFormData(prevState => ({
+      ...prevState,
+      agentId: storedAgentId || 0,
+      agentEmail: storedAgentEmail || "company@gmail.com"
+    }));
   }, []);
 
   const handleChange = (e) => {
@@ -58,56 +54,56 @@ function TravelInsurance() {
     }));
   };
 
-  const validateForm = () => {
-    let newErrors = {};
-    Object.keys(formData).forEach(key => {
-      if (formData[key] === "" && key !== "agentId" && key !== "agentEmail" && key !== "policyStatus") {
-        newErrors[key] = "This field is required";
-      }
-    });
+  // const validateForm = () => {
+  //   let newErrors = {};
+  //   Object.keys(formData).forEach(key => {
+  //     if (formData[key] === "" && key !== "agentId" && key !== "agentEmail" && key !== "policyStatus") {
+  //       newErrors[key] = "This field is required";
+  //     }
+  //   });
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (formData.userEmail && !emailRegex.test(formData.userEmail)) {
-      newErrors.userEmail = "Invalid email format";
-    }
+  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   if (formData.userEmail && !emailRegex.test(formData.userEmail)) {
+  //     newErrors.userEmail = "Invalid email format";
+  //   }
 
-    const mobileRegex = /^\d{10}$/;
-    if (formData.mobileNumber && !mobileRegex.test(formData.mobileNumber)) {
-      newErrors.mobileNumber = "Invalid mobile number format (10 digits required)";
-    }
+  //   const mobileRegex = /^\d{10}$/;
+  //   if (formData.mobileNumber && !mobileRegex.test(formData.mobileNumber)) {
+  //     newErrors.mobileNumber = "Invalid mobile number format (10 digits required)";
+  //   }
 
-    ['premiumAmount', 'coverageAmount', 'medicalCoverage', 'tripCancellationCoverage'].forEach(field => {
-      if (formData[field] && (isNaN(formData[field]) || Number(formData[field]) <= 0)) {
-        newErrors[field] = "Must be a positive number";
-      }
-    });
+  //   ['premiumAmount', 'coverageAmount', 'medicalCoverage', 'tripCancellationCoverage'].forEach(field => {
+  //     if (formData[field] && (isNaN(formData[field]) || Number(formData[field]) <= 0)) {
+  //       newErrors[field] = "Must be a positive number";
+  //     }
+  //   });
 
-    const today = new Date();
-    const startDate = new Date(formData.startDate);
-    const endDate = new Date(formData.endDate);
-    const departureDate = new Date(formData.departureDate);
-    const returnDate = new Date(formData.returnDate);
+  //   const today = new Date();
+  //   const startDate = new Date(formData.startDate);
+  //   const endDate = new Date(formData.endDate);
+  //   const departureDate = new Date(formData.departureDate);
+  //   const returnDate = new Date(formData.returnDate);
 
-    if (startDate < today) {
-      newErrors.startDate = "Start date cannot be in the past";
-    }
-    if (endDate <= startDate) {
-      newErrors.endDate = "End date must be after start date";
-    }
-    if (departureDate < today) {
-      newErrors.departureDate = "Departure date cannot be in the past";
-    }
-    if (returnDate <= departureDate) {
-      newErrors.returnDate = "Return date must be after departure date";
-    }
+  //   if (startDate < today) {
+  //     newErrors.startDate = "Start date cannot be in the past";
+  //   }
+  //   if (endDate <= startDate) {
+  //     newErrors.endDate = "End date must be after start date";
+  //   }
+  //   if (departureDate < today) {
+  //     newErrors.departureDate = "Departure date cannot be in the past";
+  //   }
+  //   if (returnDate <= departureDate) {
+  //     newErrors.returnDate = "Return date must be after departure date";
+  //   }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  //   setErrors(newErrors);
+  //   return Object.keys(newErrors).length === 0;
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
+    if (true) {
       try {
         const response = await axios.post('http://localhost:8081/api/travelinsurances', formData, {
           headers: {
